@@ -53,20 +53,60 @@ See also <https://www.databrary.org/resources/definitions.html>.
 Example: <http://nyu.databrary.org>
     
 - Buttons to registration page (http://nyu.databrary.org/user/register) and a registered user's profile page (http://nyu.databrary.org/profile)
+
+```{r splash-1, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/splash-1.jpg")
+```
+
 - A carousel of video excerpts that link to the source volumes.
+
+```{r splash-2, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/splash-2.jpg")
+```
+
 - Summary data about the number of users, institutions, and files generated from <https://nyu.databrary.org/api/activity>
+
+```{r splash-3, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/splash-3.jpg")
+```
+
+```{r menu, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/menu.jpg")
+```
+
 - Menu items
     + **Volumes**. Link to *volumes* search page <https://nyu.databrary.org/search?volume>.
     + **News**. Link to a news page on the static site <https://www.databrary.org/news.html>.
     + **About**. Dropdown menu with links to an about page on the static site <https://www.databrary.org/about.html>
     + **Resources**. Dropdown menu with links to a resources page on the static site <https://www.databrary.org/resources.html>
     + **Community**. Dropdown menu with links to a community page on the static site <https://www.databrary.org/community.html>.
+    + **My notifications**. Show logged in user's notifications.
+    
+```{r notifications, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/notifications.jpg")
+```
+   
+- Menu items    
+    + **Login/register**. Login or register button or dropdown with **View Profile**, **Create Volume**, and **Logout** commands/links.
+    
+```{r login, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/logged-in-user.jpg")
+```
+   
+- Menu items
+    + **Search**. Link to search page.
+    + **Contact**. Link to Contact page on static site.
 
 ## Registration page
 
 Example: <http://nyu.databrary.org/register>
 
 - Guides users through the process of registering for access, creating an account and password, and requesting *authorization* from an *institutional* or *individual* *sponsor*.
+
+```{r register, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/register.jpg")
+```
+
 - Components
     - **Create Account**. Panel where registrant creates account information (name, email, affiliation).
     - **Get Started**. Panel where registrants can read the *Databrary Access Agreement* and agree to Databrary's three guiding principles.
@@ -80,20 +120,47 @@ Example: <http://nyu.databrary.org/register>
 
 Example <http://nyu.databrary.org/profile>
 
+For a user who is logged in, this shows a 'private' page.
+
+```{r profile-private, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/profile-private.jpg")
+```
+    
 - Used by individual users for managing which people have access to what volumes via <https://nyu.databrary.org/party/PARTY_ID/edit?page=grant>.
 - Used by individual users to change their password via <https://nyu.databrary.org/party/PARTY_ID/edit?page=account>
 - Used by individual users to edit individual user data (name, affiliation, email, ORCID ID, website, avatar/photo) via <https://nyu.databrary.org/party/PARTY_ID/edit?page=profile>
 - Used by individual users to edit *notification* settings via <https://nyu.databrary.org/party/PARTY_ID/edit?page=notifications>
 - Used by individual users to edit the *parties* who *sponsor* their access via <https://nyu.databrary.org/party/PARTY_ID/edit?page=apply>.
 - Used by individual users to create new volumes via <https://nyu.databrary.org/volume/create?owner>.
-- Viewable by the public at <https://nyu.databrary.org/party/6> along with a list of shared *volumes*.
+
+Viewable by the public at <https://nyu.databrary.org/party/6> along with a list of shared *volumes*.
+
+```{r profile-public, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/profile-public.jpg")
+```
     
 ## Volume page
 
 Example: <https://nyu.databrary.org/volume/1>
 
+```{r volume-1, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Img 1 of 4'}
+knitr::include_graphics("img/volume-1.jpg")
+```
+
+```{r volume-2, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Img 2 of 4'}
+knitr::include_graphics("img/volume-2.jpg")
+```
+
+```{r volume-3, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Img 3 of 4'}
+knitr::include_graphics("img/volume-3.jpg")
+```
+
+```{r volume-4, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Img 4 of 4'}
+knitr::include_graphics("img/volume-4.jpg")
+```
+
 - Components
-    + For *collaborators* only, clickable view (eyeball icon) and edit (pencil icon) buttons to switch between modes. A clickable *volume history* button to show the edit history on a volume.
+    + For *collaborators* only, clickable view (eyeball icon) and edit (pencil icon) buttons to switch between (view/edit) modes. A clickable *volume history* button to show the edit history on a volume.
     - **Description of Dataset**. A short narrative description of the dataset, similar to a paper abstract.
     - **Links**. One or more (URL) links to related resources.
     - **How to Cite**. A Databrary-generated citation (in APA format) for the volume, including a DOI.
