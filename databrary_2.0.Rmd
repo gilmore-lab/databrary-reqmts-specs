@@ -1,0 +1,151 @@
+---
+title: "Databrary 2.0"
+author: "Rick Gilmore"
+date: "`r Sys.time()`"
+output: 
+  html_document:
+    toc: true
+    toc_levels: 3
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Databrary 2.0
+
+Databrary 2.0 should remain a digital data library specialized for storing, sharing, and streaming video and audio with a restricted set of institutionally authorized users based on the sharing release level granted by individual research participants.
+The 2.0 version should streamline the site, focusing on core features that serve the research community and which facilitate finding, filtering, and reusing data.
+
+# Technology stack
+
+Databrary 2.0 can keep the PostgreSQL database.
+However, a new backend framework should be implemented in a language that has the following characteristics:
+- large, active developer community
+- high availability of (lower cost) development talent
+- large number of libraries for standard functions (e.g., authorization/permissions)
+The current Javascript (AngularJS 1.x) frontend should be updated.
+
+Most users interact with the system via the browser, but a documented API is available (<https://github.com/databrary/route-doc>) for remote client use (e.g., <https://github.com/PLAY-behaviorome/databraryapi>).
+We expect that going forward, more external applications will use the API.
+The current API should be the development target for both the new backend and frontend work, but we acknowledge that some modifications to the API may be required in the transition from 1.0 to 2.0.
+
+The application is hosted on servers at NYU.
+We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project's needs, both financially and for scaling.
+
+The static documentation site is located on a separate server from the application.
+The documentation site is generated via Pelican from Markdown.
+A new scheme for updating and maintaining the static documentation site should be implemented.
+
+All code should be shared on GitHub: <http://github.com/databrary> so that active outreach efforts to the open source developer community can expand.
+
+# Glossary 
+
+See also <https://www.databrary.org/resources/definitions.html>.
+
+- *Volume* or *Volumes*. Collections of data or materials. Databrary assigns all volumes a volume ID, e.g., <https://nyu.databrary.org/volume/1> and all *shared* volumes are granted unique persistent identifiers (DOIs).
+- *Session* or *sessions*. Collections of data within a *volume*. A *session* most often represents a single visit by a participant (or set of participants interacting together) in a study and usually refers to a specific combination of locations, people, and tasks where data was collected.
+- *Materials*. Components of a *volume* that are not specific to a particular *session*.
+- *Slot* or *slot ID*. An identifier used to access a specific *session* or set of *materials*. *Sessions* and *materials* are indexed by a *slot ID*, e.g., <https://nyu.databrary.org/volume/1/slot/6256/-> refers to *slot* 6256 within volume 1. An example of a *slot* containing *materials* is <https://nyu.databrary.org/volume/2/slot/9819/->. Within the *spreadsheet* for a given *volume*, the *slot* or *slot ID* also refers to a *folder* within which multiple files are stored.
+- *Folder*. A container with a *volume ID* and *slot ID* that contains *assets*.
+- *Asset* or *assets*. Individual files stored within a (*session* or *materials*) *slot* within a *volume*. The files can be of a fixed variety of specified types as specified here: <https://nyu.databrary.org/asset/formats>. For example, the *asset* at <https://nyu.databrary.org/volume/1/slot/9807/-?asset=1> is a simple video file Databrary's development team uses to test the system and its API.
+- *Release levels*. The level of access granted to an *asset* and/or *session* by a research participant. Databrary implments a standard set of *release levels* defined here: <https://www.databrary.org/resources/guide/investigators/release/release-levels.html>. Each release level has a unique icon <https://www.databrary.org/resources/guide/investigators/release/release-levels.html>. Every *session* and every *asset* within a *session* is assigned a *release level* of *private* by default. Different *assets* within the same *session* may have different *release levels*.
+- *Affiliate*. An individual, affiliated with an *Authorized Investigator* who operates under that *Authorized Investigator's* sponsorship and supervision. The access privileges of *Affiliates* are under the control of one or more *Authorized Investigators*.
+- *Authorized investigator*. An individual who has permission from an *Institution* to conduct independent research, who has received authorization through their *Institution* and from Databrary to view, download, and contribute Data. An employee of an Institution who has the background and training in scientific and administrative oversight necessary to conduct and manage research. Institutions determine who may be eligible to conduct independent research, but this typically includes tenure-track faculty (Instructor through Professor, sometimes Emeritus), research or clinical faculty, and may include archivists, curators, and librarians. Research Associates, Research Assistants, and other staff are not considered to be independent investigators, and therefore are not typically granted permission to conduct independent research.
+- *Party* or *party ID*. A person or *institution* who either has access to Databrary or can authorize a person to access Databrary (e.g., an institution). For example, <https://nyu.databrary.org/party/12> shows that Penn State is an institution with a *party ID* 12, while <https://nyu.databrary.org/party/249> shows that Kristin Buss is a person with *party ID* 249.
+- *Authorized Organizational Representative (AOR)*. The designated individual who is authorized to sign and enter into contractual agreements on behalf of an *Institution*.
+- *Collaborator*. A person with read or read/write privileges on a volume. In the Manage Access tab within the Manage Volume page <https://nyu.databrary.org/volume/VOLUME_ID/edit?page=access>, *Collaborator* refers to any person with access to a volume, not just those with read or read/write access.
+- *Investigator*. A person with read/write/share/authorship privileges on a *volume*.
+- *Volume privileges* or *privileges*. The actions a user is permitted to take on a given *volume*, these include *read* (view and download *assets*), *read/write* (view, download *assets*, upload or edit *assets*, edit volume *metadata*), and *read/write/share* (view, download *assets*, upload or edit *assets*, edit volume *metadata*, edit access to the *volume* by others, have name included among authors in the bibligraphic citation generated for the volume).
+
+# Pages
+
+## Home/splash page 
+
+Example: <http://nyu.databrary.org>
+
+- Weaknesses with Databrary 1.0
+    - The site should, but does not have a banner indicating that we use cookies, and asking permission to continue to do so.
+    
+## Registration page
+
+Example: <http://nyu.databrary.org/register>
+
+- Guides users through the process of registering for access, creating an account and password, and requesting *authorization* from an *institutional* or *individual* *sponsor*.
+
+- Weaknesses with Databrary 1.0
+    - There is a bug. Users who log in are unable to select an authorizing *party*, neither an *institution* nor an *authorized investigator*.
+    - A list of currently active *authorized investigators* from an *institution* could be listed for the user to choose from based on the applicant's *email*/user ID.
+    - Databrary itself could store and show to applicants for *authorized investigator* status the contact information we have on file at a given institution.
+    - Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.
+    - Databrary should by default, add users to an email list for future communication about the site.
+    
+## Profile page 
+
+Example <http://nyu.databrary.org/profile>
+
+- Weaknesses with Databrary 1.0
+    - Data about individual users should be on a separate page from data about a user's volumes and affiliates.
+    - The profile page should have more fields (e.g., Twitter, Facebook, other social media accounts, ResearchGate, GitHub, OSF, etc.)
+    - The profile page should use other services' APIs where appropriate.
+    - The list of shared volumes should have preview windows (like on the search page) so that visitors can browse and stream (per permission level) video highlights listed here.
+    - Summary metadata about the volume (contains session data about participants, contains materials, participant demographic summaries, etc.)
+    - No list of grants/funding sources is provided.
+    
+## Manage Volumes & People page
+
+New page that instantiates volume and person management functionality of the Profile page in Databrary 1.0.
+The page should show attractive, flexible lists of projects, with user-settable defaults like sorting based on frequency of use, etc.
+The fundamental task of this interface is to edit *affiliates*' access privileges to specific *volumes* or to groups of *volumes*.
+A secondary task of this interface is to edit *affiliates*' access privileges to Databrary as a whole.
+The interface should clearly show what *volumes* an *affiliate* has read or read/write access to, and in turn, what *affiliates* have read or read/write access to a given volume.
+
+## Volume page
+
+Example: <https://nyu.databrary.org/volume/1>
+
+- Weaknesses in Databrary 1.0
+    - Controls for editing the volume are hard to find
+    - The default avatar/icon is unattractive
+    - Several sub sections are expandable/collapsable with a mouse click but this behavior is obscure
+    - There is much wasted space
+    - The names of investigators and collaborators are often cut-off
+    - The funder/agency labels should be clickable taking users to other pages where users can see what other volumes are funded by grant X, or agency Y.
+    - There is inconsistency in the use of the term *collaborator*. Here, it means someone with read or read/write access to the volume. But on the Volume Edit page, *collaborator* means this AND includes read/write/share/authorship status which is also called *investigator* status.
+    - The term "highlights" may be misleading.
+    - There should be a section for material separate from data
+    - The pivot table operations on the sessions spreadsheet are slick, but may not be used by many. The font size of the pivot table text is small and not adjustable.
+    - The "filter" and "summarize by" tabs may confuse users.
+    - The "tags" and "comments" sections are not widely used.
+    - The spreadsheet interface should be rethought.
+    - The volume page should be come a "project" page
+    - The volume page should implement modal (in place) editing of content
+    - The volume page should report more metadata about the project, including downloads, citations, etc., and do so in a more visually attractive manner.
+    
+## *Slot* or *Session* or *Folder* view page
+
+Example: <https://nyu.databrary.org/volume/1/slot/6256/->
+
+## Search page
+
+Example: <https://nyu.databrary.org/search>
+
+# Access model
+
+## Sponsor model
+
+Databrary employs a *sponsor* model, where specific *parties* can grant access privileges to other *parties*.
+For example, when an individual institution signs the *Databrary Access Agreement* for the first time, Databrary becomes a sponsor of that institution.
+That institution, in turn, becomes a sponsor of a specific *Authorized Investigator* who is employed by and approved by the institution.
+Subsequently, *Authorized Investigators* may choose to *sponsor* (grant access privileges to) other *Authorized Investigators* or *Affiliates*.
+
+Going forward, we will need to consider account/access types for i) people who are not affiliated with institutions but require access to subsets of shared materials (private collections), and ii) commercial entities.
+
+## Authorized Investigator privileges
+
+*Authorized Investigators* are automatically granted (read/download) access to all *shared* data and materials on Databrary.
+*Authorized Investigators* may also create new volumes, read/write/edit/change access to volumes.
+On a volume-by-volume basis, *Authorized Investigators* choose who is a *collaborator* (view/read or view/read/write privileges) and who is an *investigator* (view/read/write/authorship/share privileges).
+*Authorized Investigators* also choose whether or not each *Affiliate* has (read/download) privileges on Databrary.

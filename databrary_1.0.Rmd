@@ -183,18 +183,104 @@ knitr::include_graphics("img/volume-4.jpg")
     - **Comments**
         + An interface to add comments about a volume.
 
+## Manage volume page
+
+Example: <https://nyu.databrary.org/volume/1/edit?page=overview>
+
+This page opens when the user (with edit privileges) clicks on the edit/pencil icon from a volume page.
+It has separate tabbed sections.
+
+### Overview
+
+Provides an interface to enter volume overview information. 
+Fields include `correspond to published paper or resource (link)`, `title`, `description`, `internal short name`, `key words`
+
+```{r volume-overview, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Volume Overview'}
+knitr::include_graphics("img/volume-overview.jpg")
+```
+
+### Manage Access
+
+Has two subsections: **Share this volume** with radio buttons to select from (`Private` (closed padlock icon)/`Share Volume Overview Only` (keyhole icon)/`Share Entire Volume` (open padlock icon)) and **Collaborators** which shows a list of the people with privileges on the volume.
+
+```{r volume-manage, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Manage Access'}
+knitr::include_graphics("img/volume-manage.jpg")
+```
+
+### Design Spreadsheet
+
+Interface (and instructions) for designing components of a study, specifically the data fields about participant characteristics that will be included in the spreadsheet.
+Users select from various Categories of fields (`participant`, `pilot`, `exclusion`, `condition`, `group`, `task`, `context`). 
+This generates a Spreadsheet Preview. 
+
+```{r volume-design, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Design Spreadsheet'}
+knitr::include_graphics("img/volume-design.jpg")
+```
+
+### Enter Data
+
+An interface to enter data via the spreadsheet, including adding a *materials* folder.
+
+```{r volume-enter, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Enter Data'}
+knitr::include_graphics("img/volume-enter.jpg")
+```
+
+### Add Links
+
+An interface for adding URLs to other web resources (on Databrary or elsewhere). Each link has a `title` and `link` field.
+Links can be URIs or DOIs.
+
+```{r volume-links, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Add Links'}
+knitr::include_graphics("img/volume-links.jpg")
+```
+
+### List Funding
+
+An interface for entering one or more funding sources.
+There is a search bar to search for, e.g. "NSF".
+Each funding source has a `source` field generated from the results of the search bar, and an `award # or description` field.
+  
+```{r volume-funding, echo=FALSE, fig.align='center', out.width='100%', fig.cap='List Funding'}
+knitr::include_graphics("img/volume-funding.jpg")
+```
+
 ## *Slot* or *Session* or *Folder* view page
 
 Example: <https://nyu.databrary.org/volume/1/slot/6256/->
 
-- Components
-    + Clickable view (eyeball icon) and edit (pencil icon) buttons to switch between viewing and editing modes. A clickable *session history* button to show the session history. [NB: This functionality may be broken.]
-    + A text entry window to add new *keywords* or *tags*. 
-    + "Timeline" depictions of metadata information that apply to the *slot*
-    + A bar/timeline like depiction of each *asset* (file) in the *slot*
-    + A *Viewer* panel appears when the bar/timeline for an *asset* is clicked, for example <https://nyu.databrary.org/volume/1/slot/6256/-?asset=9828>. Video, audio, PDF filetypes (only?) can be viewed here. The *viewer* panel also contains a drag and drop region for uploading new/replacing existing files.
-    + A *Comment* box for adding comments specific to a *slot*.
-    + A clickable *download all files as zip* text tag.
+### Slot/Sesssion/Folder components
+
+- Clickable view (eyeball icon) and edit (pencil icon) buttons to switch between viewing and editing modes. A clickable *session history* button to show the session history. [NB: This functionality may be broken.]
+- A text entry window to add new *keywords* or *tags*. 
+- "Timeline" depictions of metadata information that apply to the *slot*
+- A bar/timeline like depiction of each *asset* (file) in the *slot*
+- A *Viewer* panel appears when the bar/timeline for an *asset* is clicked, for example <https://nyu.databrary.org/volume/1/slot/6256/-?asset=9828>. Video, audio, PDF filetypes (only?) can be viewed here. The *viewer* panel also contains a drag and drop region for uploading new/replacing existing files.
+- A *Comment* box for adding comments specific to a *slot*.
+- A clickable *download all files as zip* text tag.
+
+### View
+
+Selected by clicking on view/eyeball icon.
+
+```{r slot-view, echo=FALSE, fig.align='center', out.width='100%', fig.cap='View Slot'}
+knitr::include_graphics("img/slot-view.jpg")
+```
+
+### Manage
+
+Selected by clicking edit/pencil icon.
+
+```{r slot-manage, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Manage Slot'}
+knitr::include_graphics("img/slot-manage-edit.jpg")
+```
+
+### Upload data
+
+Selected by clicking `Add File` button.
+
+```{r slot-manage-upload, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Upload Data'}
+knitr::include_graphics("img/slot-manage-upload.jpg")
+```
 
 ## Search page
 
@@ -208,6 +294,16 @@ Example: <https://nyu.databrary.org/search>
 - Pages to show all *users* can be generated via <https://nyu.databrary.org/search?offset=0&volume=false>
 - Pages to show all institutions with *authorized investigators* can be generated via <https://nyu.databrary.org/search?offset=0&volume=false&f.party_authorization=5&f.party_is_institution=true>.
 - Pages to show all *authorized investigators* can be generated via <https://nyu.databrary.org/search?offset=0&volume=false&f.party_authorization=4&f.party_is_institution=false>.
+
+```{r search, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Search Page'}
+knitr::include_graphics("img/search.jpg")
+```
+
+A 'plus' icon expands to show a streamable/playable thumbnail if the volume has one.
+
+```{r search-thumbnails, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Search with Expanded Thumbnail'}
+knitr::include_graphics("img/search-thumbnails.jpg")
+```
  
 # Access model
 
