@@ -23,9 +23,11 @@ The 2.0 version should streamline the site, focusing on core features that serve
 
 Databrary 2.0 can keep the PostgreSQL database.
 However, a new backend framework should be implemented in a language that has the following characteristics:
+
 - large, active developer community
 - high availability of (lower cost) development talent
 - large number of libraries for standard functions (e.g., authorization/permissions)
+
 The current Javascript (AngularJS 1.x) frontend should be updated.
 
 Most users interact with the system via the browser, but a documented API is available (<https://github.com/databrary/route-doc>) for remote client use (e.g., <https://github.com/PLAY-behaviorome/databraryapi>).
