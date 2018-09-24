@@ -30,16 +30,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Coding files (e.g., Datavyu's .opf format) contain lists of single character or numeric codes with temporal (onset,offset) indices in `HH:MM:SS:mmm,HH:MM:SS:mmm` format.
 - If coding files can be accompanied by coding definitions or codebooks that expand single character codes `code.value` and provide short phrases (e.g. `code`s), narrative descriptions, the codebooks + coding files can provide searchable indices into specific videos
+- Codebooks should be part of a `volume`'s Materials section.
 
 # Spatial codes
 
 - Many computer vision algorithms return bounding boxes {(x1,y1), (x2,y2)} or bounding polygons {(x1,y1), (x2,y2), ..., (xn,yn)} indicating the spatial region (in image coordinates) that the code(s) apply to.
-- Within Databrary, consider enabling the application of bounding boxes or bounding polygons to video segments to which user-defined annotations/codes can be added.
+- Within Databrary's [asset/file viewer interface](databrary_1.0.html#462_view), consider enabling the application of bounding boxes or bounding polygons to video segments to which user-defined annotations/codes can be added.
     - These bounding regions can be exported in Datavyu (.opf) format for future visualization within Datavyu.
 
 # Search for tagged segments
 
-- Search across a volume/project or across Databrary
+- Search across a volume/project or across Databrary, see [Databrary 1.0 Search Page](databrary_1.0.html#47_search_page)
 - Return thumbnails (low res animated GIF) for browsing/previewing
 - Select/filter & download/clone for reuse
 

@@ -266,6 +266,12 @@ Selected by clicking on view/eyeball icon.
 knitr::include_graphics("img/slot-view.jpg")
 ```
 
+If the selected asset is a video, a video player appears.
+
+```{r view-video, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Play video'}
+knitr::include_graphics("img/view-video.jpg")
+```
+
 ### Manage
 
 Selected by clicking edit/pencil icon.

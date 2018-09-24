@@ -221,7 +221,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Advanced Access</h1>
 <h4 class="author"><em>Rick Gilmore</em></h4>
-<h4 class="date"><em>2018-09-24 18:14:17</em></h4>
+<h4 class="date"><em>2018-09-24 18:24:20</em></h4>
 
 </div>
 
@@ -249,13 +249,14 @@ div.tocify {
 <ul>
 <li>Coding files (e.g., Datavyu’s .opf format) contain lists of single character or numeric codes with temporal (onset,offset) indices in <code>HH:MM:SS:mmm,HH:MM:SS:mmm</code> format.</li>
 <li>If coding files can be accompanied by coding definitions or codebooks that expand single character codes <code>code.value</code> and provide short phrases (e.g. <code>code</code>s), narrative descriptions, the codebooks + coding files can provide searchable indices into specific videos</li>
+<li>Codebooks should be part of a <code>volume</code>’s Materials section.</li>
 </ul>
 </div>
 <div id="spatial-codes" class="section level1">
 <h1><span class="header-section-number">3</span> Spatial codes</h1>
 <ul>
 <li>Many computer vision algorithms return bounding boxes {(x1,y1), (x2,y2)} or bounding polygons {(x1,y1), (x2,y2), …, (xn,yn)} indicating the spatial region (in image coordinates) that the code(s) apply to.</li>
-<li>Within Databrary, consider enabling the application of bounding boxes or bounding polygons to video segments to which user-defined annotations/codes can be added.
+<li>Within Databrary’s <a href="databrary_1.0.html#462_view">asset/file viewer interface</a>, consider enabling the application of bounding boxes or bounding polygons to video segments to which user-defined annotations/codes can be added.
 <ul>
 <li>These bounding regions can be exported in Datavyu (.opf) format for future visualization within Datavyu.</li>
 </ul></li>
@@ -264,7 +265,7 @@ div.tocify {
 <div id="search-for-tagged-segments" class="section level1">
 <h1><span class="header-section-number">4</span> Search for tagged segments</h1>
 <ul>
-<li>Search across a volume/project or across Databrary</li>
+<li>Search across a volume/project or across Databrary, see <a href="databrary_1.0.html#47_search_page">Databrary 1.0 Search Page</a></li>
 <li>Return thumbnails (low res animated GIF) for browsing/previewing</li>
 <li>Select/filter &amp; download/clone for reuse</li>
 </ul>
