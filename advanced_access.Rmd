@@ -1,0 +1,50 @@
+---
+title: "Advanced Access"
+author: "Rick Gilmore"
+date: "`r Sys.time()`"
+output: 
+  html_document:
+    toc: true
+    toc_levels: 3
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# API
+
+## Access video segments
+
+- Goal: API call to access segments *within* a larger recording.
+- Does `GET "https://nyu.databrary.org/api/slot/{slotid}/{segment}"` or `GET "https://nyu.databrary.org/api/volume/{volumeid}/slot/{slotid}/{segment}/asset/{assetid}"` return a video? NB: Databrary's segment parameter is in milliseconds (from the start of the video recording) format.
+    - Use case: Support search for tagged segments.
+    - If existing API does not return recordings, then we will need a way to render a suitable output.
+- Is there a common format in computer vision for tagged video segments?
+
+## Access spatial regions of videos or video segments (see 'Spatial codes')
+
+# Coding files as temporal indices
+
+- Coding files (e.g., Datavyu's .opf format) contain lists of single character or numeric codes with temporal (onset,offset) indices in `HH:MM:SS:mmm,HH:MM:SS:mmm` format.
+- If coding files can be accompanied by coding definitions or codebooks that expand single character codes `code.value` and provide short phrases (e.g. `code`s), narrative descriptions, the codebooks + coding files can provide searchable indices into specific videos
+
+# Spatial codes
+
+- Many computer vision algorithms return bounding boxes {(x1,y1), (x2,y2)} or bounding polygons {(x1,y1), (x2,y2), ..., (xn,yn)} indicating the spatial region (in image coordinates) that the code(s) apply to.
+- Within Databrary, consider enabling the application of bounding boxes or bounding polygons to video segments to which user-defined annotations/codes can be added.
+    - These bounding regions can be exported in Datavyu (.opf) format for future visualization within Datavyu.
+
+# Search for tagged segments
+
+- Search across a volume/project or across Databrary
+- Return thumbnails (low res animated GIF) for browsing/previewing
+- Select/filter & download/clone for reuse
+
+# Clone/copy or virtual volumes
+
+- As a user, I want to reuse another investigator's data, so I can choose to 'clone' or 'copy' that data to my own workspace (a volume that contains data from other volumes) in a way that maintains information about the original source.
+
+

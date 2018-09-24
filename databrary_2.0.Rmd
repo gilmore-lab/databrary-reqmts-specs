@@ -134,6 +134,11 @@ Example: <https://nyu.databrary.org/volume/1/slot/6256/->
 
 Example: <https://nyu.databrary.org/search>
 
+### Searching *across the library* for tagged segments within videos
+
+- As a user, I can store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files. The coding files have onset/offset fields and follow the Datavyu or other open (e.g., BIDS) file specification.
+- As a user, I can search for specific video segments with particular codes. The interface returns a set of thumbnail (low res/animated GIF-like?) segments that I can browse, select, and ultimately download.
+
 # Access model
 
 ## Sponsor model
