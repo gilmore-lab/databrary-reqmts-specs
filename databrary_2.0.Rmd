@@ -129,6 +129,16 @@ The fundamental task of this interface is to edit *affiliates*' access privilege
 A secondary task of this interface is to edit *affiliates*' access privileges to Databrary as a whole.
 The interface should clearly show what *volumes* an *affiliate* has read or read/write access to, and in turn, what *affiliates* have read or read/write access to a given volume.
 
+### [Design Spreadsheet](https://nyu.databrary.org/volume/1/edit?page=design) & [Enter Data](https://nyu.databrary.org/volume/1/edit?page) Tab
+
+These pages are used to design a participant-level spreadsheet and then to enter data about specific participant characteristics into that spreadsheet.
+
+There is a relatively new feature that allows a user to create a Databrary spreadsheet with selected fields and then upload a [specially formatted CSV file](databrary-spreadsheet-template.csv).
+This feature is described in [this video](https://nyu.databrary.org/slot/27587/0,183810/asset/122478/download?inline=true).
+
+Entering participant metadata is a big headache for many users, so this feature should be enhanced.
+For example, it would be great if the API supported direct uploading so that the researcher did not have to interact with the web interface.
+
 ## Volume page
 
 Example: <https://nyu.databrary.org/volume/1>
