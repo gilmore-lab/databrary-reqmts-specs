@@ -28,14 +28,30 @@ However, a new backend framework should be implemented in a language that has th
 - high availability of (lower cost) development talent
 - large number of libraries for standard functions (e.g., authorization/permissions)
 
+## Front-end
+
 The current Javascript (AngularJS 1.x) frontend should be updated.
+
+## API
 
 Most users interact with the system via the browser, but a documented API is available (<https://github.com/databrary/route-doc>) for remote client use (e.g., <https://github.com/PLAY-behaviorome/databraryapi>).
 We expect that going forward, more external applications will use the API.
 The current API should be the development target for both the new backend and frontend work, but we acknowledge that some modifications to the API may be required in the transition from 1.0 to 2.0.
 
+The [R package](https://github.com/PLAY-behaviorome/databraryapi) could and should be expanded to include Python.
+The package(s) should enable uploading and updating information on Databrary, in addition to the current read/download functionality.
+
+The current API enables time-delimited segments of recordings to be generated (via a call to ffmpeg?) and returned to the user.
+We will need to consider ways to optimize this function going forward, including caching.
+
+For additional information and ideas, see [Advanced Access](advanced_access.html).
+
+## Servers
+
 The application is hosted on servers at NYU.
 We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project's needs, both financially and for scaling.
+
+## Static site
 
 The static documentation site is located on a separate server from the application.
 The documentation site is generated via Pelican from Markdown.
@@ -70,6 +86,15 @@ Example: <http://nyu.databrary.org>
 
 - Weaknesses with Databrary 1.0
     - The site should, but does not have a banner indicating that we use cookies, and asking permission to continue to do so.
+    - Terms and Conditions of Use are not posted. A draft Terms document is under review at NYU.
+    - No Privacy Policy is posted. A draft Privacy Policy is under review at NYU.
+    
+## Static documentation site
+
+- Weaknesses with Databrary 1.0
+    - The static documentation site is hosted on a separate, external server from the Databrary application.
+    - The static site is hard to navigate, especially for new users.
+    - The static site does not have sufficient tutorial information for new users.
     
 ## Registration page
 
@@ -78,7 +103,7 @@ Example: <http://nyu.databrary.org/register>
 - Guides users through the process of registering for access, creating an account and password, and requesting *authorization* from an *institutional* or *individual* *sponsor*.
 
 - Weaknesses with Databrary 1.0
-    - There is a bug. Users who log in are unable to select an authorizing *party*, neither an *institution* nor an *authorized investigator*.
+    - ~~There is a bug. Users who log in are unable to select an authorizing *party*, neither an *institution* nor an *authorized investigator*~~.
     - A list of currently active *authorized investigators* from an *institution* could be listed for the user to choose from based on the applicant's *email*/user ID.
     - Databrary itself could store and show to applicants for *authorized investigator* status the contact information we have on file at a given institution.
     - Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.
@@ -134,9 +159,15 @@ Example: <https://nyu.databrary.org/volume/1/slot/6256/->
 
 Example: <https://nyu.databrary.org/search>
 
+### Expanding information for searching and filtering
+
+- As a user, I can search for data sets that have participants who meet specific criteria (gender, race, ethnicity) or who have been observed in specific contexts (lab, home, school, museum) or who speak specific languages, etc.
+Many of these data elements are reported in the Databrary spreadsheet.
+
 ### Searching *across the library* for tagged segments within videos
 
-- As a user, I can store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files. The coding files have onset/offset fields and follow the Datavyu or other open (e.g., BIDS) file specification.
+- As a user, I can store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files. 
+The coding files have temporal onset/offset fields and follow the Datavyu or other open (e.g., BIDS) file specification.
 - As a user, I can search for specific video segments with particular codes. The interface returns a set of thumbnail (low res/animated GIF-like?) segments that I can browse, select, and ultimately download.
 
 # Access model

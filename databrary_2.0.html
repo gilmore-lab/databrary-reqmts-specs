@@ -221,7 +221,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Databrary 2.0</h1>
 <h4 class="author"><em>Rick Gilmore</em></h4>
-<h4 class="date"><em>2018-09-20 17:04:51</em></h4>
+<h4 class="date"><em>2018-10-22 08:38:15</em></h4>
 
 </div>
 
@@ -238,11 +238,26 @@ div.tocify {
 <li>high availability of (lower cost) development talent</li>
 <li>large number of libraries for standard functions (e.g., authorization/permissions)</li>
 </ul>
+<div id="front-end" class="section level2">
+<h2><span class="header-section-number">2.1</span> Front-end</h2>
 <p>The current Javascript (AngularJS 1.x) frontend should be updated.</p>
+</div>
+<div id="api" class="section level2">
+<h2><span class="header-section-number">2.2</span> API</h2>
 <p>Most users interact with the system via the browser, but a documented API is available (<a href="https://github.com/databrary/route-doc" class="uri">https://github.com/databrary/route-doc</a>) for remote client use (e.g., <a href="https://github.com/PLAY-behaviorome/databraryapi" class="uri">https://github.com/PLAY-behaviorome/databraryapi</a>). We expect that going forward, more external applications will use the API. The current API should be the development target for both the new backend and frontend work, but we acknowledge that some modifications to the API may be required in the transition from 1.0 to 2.0.</p>
+<p>The <a href="https://github.com/PLAY-behaviorome/databraryapi">R package</a> could and should be expanded to include Python. The package(s) should enable uploading and updating information on Databrary, in addition to the current read/download functionality.</p>
+<p>The current API enables time-delimited segments of recordings to be generated (via a call to ffmpeg?) and returned to the user. We will need to consider ways to optimize this function going forward, including caching.</p>
+<p>For additional information and ideas, see <a href="advanced_access.html">Advanced Access</a>.</p>
+</div>
+<div id="servers" class="section level2">
+<h2><span class="header-section-number">2.3</span> Servers</h2>
 <p>The application is hosted on servers at NYU. We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project’s needs, both financially and for scaling.</p>
+</div>
+<div id="static-site" class="section level2">
+<h2><span class="header-section-number">2.4</span> Static site</h2>
 <p>The static documentation site is located on a separate server from the application. The documentation site is generated via Pelican from Markdown. A new scheme for updating and maintaining the static documentation site should be implemented.</p>
 <p>All code should be shared on GitHub: <a href="http://github.com/databrary" class="uri">http://github.com/databrary</a> so that active outreach efforts to the open source developer community can expand.</p>
+</div>
 </div>
 <div id="glossary" class="section level1">
 <h1><span class="header-section-number">3</span> Glossary</h1>
@@ -273,17 +288,30 @@ div.tocify {
 <li>Weaknesses with Databrary 1.0
 <ul>
 <li>The site should, but does not have a banner indicating that we use cookies, and asking permission to continue to do so.</li>
+<li>Terms and Conditions of Use are not posted. A draft Terms document is under review at NYU.</li>
+<li>No Privacy Policy is posted. A draft Privacy Policy is under review at NYU.</li>
+</ul></li>
+</ul>
+</div>
+<div id="static-documentation-site" class="section level2">
+<h2><span class="header-section-number">4.2</span> Static documentation site</h2>
+<ul>
+<li>Weaknesses with Databrary 1.0
+<ul>
+<li>The static documentation site is hosted on a separate, external server from the Databrary application.</li>
+<li>The static site is hard to navigate, especially for new users.</li>
+<li>The static site does not have sufficient tutorial information for new users.</li>
 </ul></li>
 </ul>
 </div>
 <div id="registration-page" class="section level2">
-<h2><span class="header-section-number">4.2</span> Registration page</h2>
+<h2><span class="header-section-number">4.3</span> Registration page</h2>
 <p>Example: <a href="http://nyu.databrary.org/register" class="uri">http://nyu.databrary.org/register</a></p>
 <ul>
 <li><p>Guides users through the process of registering for access, creating an account and password, and requesting <em>authorization</em> from an <em>institutional</em> or <em>individual</em> <em>sponsor</em>.</p></li>
 <li>Weaknesses with Databrary 1.0
 <ul>
-<li>There is a bug. Users who log in are unable to select an authorizing <em>party</em>, neither an <em>institution</em> nor an <em>authorized investigator</em>.</li>
+<li><del>There is a bug. Users who log in are unable to select an authorizing <em>party</em>, neither an <em>institution</em> nor an <em>authorized investigator</em></del>.</li>
 <li>A list of currently active <em>authorized investigators</em> from an <em>institution</em> could be listed for the user to choose from based on the applicant’s <em>email</em>/user ID.</li>
 <li>Databrary itself could store and show to applicants for <em>authorized investigator</em> status the contact information we have on file at a given institution.</li>
 <li>Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.</li>
@@ -292,7 +320,7 @@ div.tocify {
 </ul>
 </div>
 <div id="profile-page" class="section level2">
-<h2><span class="header-section-number">4.3</span> Profile page</h2>
+<h2><span class="header-section-number">4.4</span> Profile page</h2>
 <p>Example <a href="http://nyu.databrary.org/profile" class="uri">http://nyu.databrary.org/profile</a></p>
 <ul>
 <li>Weaknesses with Databrary 1.0
@@ -307,11 +335,11 @@ div.tocify {
 </ul>
 </div>
 <div id="manage-volumes-people-page" class="section level2">
-<h2><span class="header-section-number">4.4</span> Manage Volumes &amp; People page</h2>
+<h2><span class="header-section-number">4.5</span> Manage Volumes &amp; People page</h2>
 <p>New page that instantiates volume and person management functionality of the Profile page in Databrary 1.0. The page should show attractive, flexible lists of projects, with user-settable defaults like sorting based on frequency of use, etc. The fundamental task of this interface is to edit <em>affiliates</em>‘access privileges to specific <em>volumes</em> or to groups of <em>volumes</em>. A secondary task of this interface is to edit <em>affiliates</em>’ access privileges to Databrary as a whole. The interface should clearly show what <em>volumes</em> an <em>affiliate</em> has read or read/write access to, and in turn, what <em>affiliates</em> have read or read/write access to a given volume.</p>
 </div>
 <div id="volume-page" class="section level2">
-<h2><span class="header-section-number">4.5</span> Volume page</h2>
+<h2><span class="header-section-number">4.6</span> Volume page</h2>
 <p>Example: <a href="https://nyu.databrary.org/volume/1" class="uri">https://nyu.databrary.org/volume/1</a></p>
 <ul>
 <li>Weaknesses in Databrary 1.0
@@ -336,12 +364,25 @@ div.tocify {
 </ul>
 </div>
 <div id="slot-or-session-or-folder-view-page" class="section level2">
-<h2><span class="header-section-number">4.6</span> <em>Slot</em> or <em>Session</em> or <em>Folder</em> view page</h2>
+<h2><span class="header-section-number">4.7</span> <em>Slot</em> or <em>Session</em> or <em>Folder</em> view page</h2>
 <p>Example: <a href="https://nyu.databrary.org/volume/1/slot/6256/-" class="uri">https://nyu.databrary.org/volume/1/slot/6256/-</a></p>
 </div>
 <div id="search-page" class="section level2">
-<h2><span class="header-section-number">4.7</span> Search page</h2>
+<h2><span class="header-section-number">4.8</span> Search page</h2>
 <p>Example: <a href="https://nyu.databrary.org/search" class="uri">https://nyu.databrary.org/search</a></p>
+<div id="expanding-information-for-searching-and-filtering" class="section level3">
+<h3><span class="header-section-number">4.8.1</span> Expanding information for searching and filtering</h3>
+<ul>
+<li>As a user, I can search for data sets that have participants who meet specific criteria (gender, race, ethnicity) or who have been observed in specific contexts (lab, home, school, museum) or who speak specific languages, etc. Many of these data elements are reported in the Databrary spreadsheet.</li>
+</ul>
+</div>
+<div id="searching-across-the-library-for-tagged-segments-within-videos" class="section level3">
+<h3><span class="header-section-number">4.8.2</span> Searching <em>across the library</em> for tagged segments within videos</h3>
+<ul>
+<li>As a user, I can store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files. The coding files have temporal onset/offset fields and follow the Datavyu or other open (e.g., BIDS) file specification.</li>
+<li>As a user, I can search for specific video segments with particular codes. The interface returns a set of thumbnail (low res/animated GIF-like?) segments that I can browse, select, and ultimately download.</li>
+</ul>
+</div>
 </div>
 </div>
 <div id="access-model" class="section level1">

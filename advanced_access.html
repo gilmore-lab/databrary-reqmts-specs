@@ -221,7 +221,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Advanced Access</h1>
 <h4 class="author"><em>Rick Gilmore</em></h4>
-<h4 class="date"><em>2018-09-24 18:24:20</em></h4>
+<h4 class="date"><em>2018-10-22 08:43:12</em></h4>
 
 </div>
 
@@ -232,12 +232,12 @@ div.tocify {
 <h2><span class="header-section-number">1.1</span> Access video segments</h2>
 <ul>
 <li>Goal: API call to access segments <em>within</em> a larger recording.</li>
-<li>Does <code>GET &quot;https://nyu.databrary.org/api/slot/{slotid}/{segment}&quot;</code> or <code>GET &quot;https://nyu.databrary.org/api/volume/{volumeid}/slot/{slotid}/{segment}/asset/{assetid}&quot;</code> return a video? NB: Databrary’s segment parameter is in milliseconds (from the start of the video recording) format.
+<li><code>GET &quot;https://nyu.databrary.org/api/slot/{slotid}/{segment}&quot;</code> or <code>GET &quot;https://nyu.databrary.org/api/volume/{volumeid}/slot/{slotid}/{segment}/asset/{assetid}&quot;</code> returns a video. NB: Databrary’s segment parameter is in milliseconds (from the start of the video recording) format, as in <code>0,10000</code> returns the first 10s.
 <ul>
 <li>Use case: Support search for tagged segments.</li>
-<li>If existing API does not return recordings, then we will need a way to render a suitable output.</li>
 </ul></li>
 <li>Is there a common format in computer vision for tagged video segments?</li>
+<li>Challenge, the specific code, e.g., <code>h</code> for “hold” in the PLAY dataset, is a single character or number. We want a useful means of storing richer code definitions and linking them to the videos and coding files.</li>
 </ul>
 </div>
 <div id="access-spatial-regions-of-videos-or-video-segments-see-spatial-codes" class="section level2">

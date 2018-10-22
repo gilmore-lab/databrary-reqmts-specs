@@ -19,10 +19,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Access video segments
 
 - Goal: API call to access segments *within* a larger recording.
-- Does `GET "https://nyu.databrary.org/api/slot/{slotid}/{segment}"` or `GET "https://nyu.databrary.org/api/volume/{volumeid}/slot/{slotid}/{segment}/asset/{assetid}"` return a video? NB: Databrary's segment parameter is in milliseconds (from the start of the video recording) format.
+- `GET "https://nyu.databrary.org/api/slot/{slotid}/{segment}"` or `GET "https://nyu.databrary.org/api/volume/{volumeid}/slot/{slotid}/{segment}/asset/{assetid}"` returns a video. NB: Databrary's segment parameter is in milliseconds (from the start of the video recording) format, as in `0,10000` returns the first 10s.
     - Use case: Support search for tagged segments.
-    - If existing API does not return recordings, then we will need a way to render a suitable output.
 - Is there a common format in computer vision for tagged video segments?
+- Challenge, the specific code, e.g., `h` for "hold" in the PLAY dataset, is a single character or number.
+We want a useful means of storing richer code definitions and linking them to the videos and coding files.
 
 ## Access spatial regions of videos or video segments (see 'Spatial codes')
 
@@ -47,5 +48,3 @@ knitr::opts_chunk$set(echo = TRUE)
 # Clone/copy or virtual volumes
 
 - As a user, I want to reuse another investigator's data, so I can choose to 'clone' or 'copy' that data to my own workspace (a volume that contains data from other volumes) in a way that maintains information about the original source.
-
-
