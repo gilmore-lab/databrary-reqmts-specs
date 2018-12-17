@@ -221,7 +221,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Databrary 2.0</h1>
 <h4 class="author"><em>Rick Gilmore</em></h4>
-<h4 class="date"><em>2018-10-22 10:57:44</em></h4>
+<h4 class="date"><em>2018-12-17 09:54:46</em></h4>
 
 </div>
 
@@ -235,8 +235,8 @@ div.tocify {
 <p>Databrary 2.0 can keep the PostgreSQL database. However, a new backend framework should be implemented in a language that has the following characteristics:</p>
 <ul>
 <li>large, active developer community</li>
-<li>high availability of (lower cost) development talent</li>
-<li>large number of libraries for standard functions (e.g., authorization/permissions)</li>
+<li>high availability of (lower cost) developer talent.</li>
+<li>large number of libraries for standard functions (e.g., authorization/permissions).</li>
 </ul>
 <div id="front-end" class="section level2">
 <h2><span class="header-section-number">2.1</span> Front-end</h2>
@@ -245,13 +245,13 @@ div.tocify {
 <div id="api" class="section level2">
 <h2><span class="header-section-number">2.2</span> API</h2>
 <p>Most users interact with the system via the browser, but a documented API is available (<a href="https://github.com/databrary/route-doc" class="uri">https://github.com/databrary/route-doc</a>) for remote client use (e.g., <a href="https://github.com/PLAY-behaviorome/databraryapi" class="uri">https://github.com/PLAY-behaviorome/databraryapi</a>). We expect that going forward, more external applications will use the API. The current API should be the development target for both the new backend and frontend work, but we acknowledge that some modifications to the API may be required in the transition from 1.0 to 2.0.</p>
-<p>The <a href="https://github.com/PLAY-behaviorome/databraryapi">R package</a> could and should be expanded to include Python. The package(s) should enable uploading and updating information on Databrary, in addition to the current read/download functionality.</p>
+<p>The <a href="https://github.com/PLAY-behaviorome/databraryapi">R package</a> could and should be expanded to include Python and possibly Julia. The package(s) should enable uploading and updating information on Databrary, in addition to the current read/download functionality.</p>
 <p>The current API enables time-delimited segments of recordings to be generated (via a call to ffmpeg?) and returned to the user. We will need to consider ways to optimize this function going forward, including caching.</p>
 <p>For additional information and ideas, see <a href="advanced_access.html">Advanced Access</a>.</p>
 </div>
 <div id="servers" class="section level2">
 <h2><span class="header-section-number">2.3</span> Servers</h2>
-<p>The application is hosted on servers at NYU. We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project’s needs, both financially and for scaling.</p>
+<p>The application is hosted on servers at NYU. We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project’s needs, both financially and for scaling. We should also explore whether hosting some of the data on servers located in the EU or Canada would overcome regulatory restrictions on data sharing and reuse.</p>
 </div>
 <div id="static-site" class="section level2">
 <h2><span class="header-section-number">2.4</span> Static site</h2>
@@ -284,76 +284,171 @@ div.tocify {
 <div id="homesplash-page" class="section level2">
 <h2><span class="header-section-number">4.1</span> Home/splash page</h2>
 <p>Example: <a href="http://nyu.databrary.org" class="uri">http://nyu.databrary.org</a></p>
+<div id="purpose" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Purpose</h3>
 <ul>
-<li>Weaknesses with Databrary 1.0
+<li>To describe Databrary to the world and invite users to register.</li>
+</ul>
+</div>
+<div id="weaknesses-with-databrary-1.0" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Weaknesses with Databrary 1.0</h3>
 <ul>
 <li>The site should, but does not have a banner indicating that we use cookies, and asking permission to continue to do so.</li>
 <li>Terms and Conditions of Use are not posted. A draft Terms document is under review at NYU.</li>
 <li>No Privacy Policy is posted. A draft Privacy Policy is under review at NYU.</li>
-</ul></li>
 </ul>
+</div>
+<div id="requirements-for-databrary-2.0" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Requirements for Databrary 2.0</h3>
+<ul>
+<li>Add banner indicating that we use cookies, and asking permission to continue to do so.</li>
+<li>Add Terms &amp; Conditions of Use and Privacy Policy links to site.</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>The current carousel of projects and videos could be made more visually attractive.</li>
+</ul>
+</div>
 </div>
 <div id="static-documentation-site" class="section level2">
 <h2><span class="header-section-number">4.2</span> Static documentation site</h2>
+<p>Example: <a href="http://www.databrary.org/resources.html" class="uri">http://www.databrary.org/resources.html</a></p>
+<div id="weaknesses-with-databrary-1.0-1" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Weaknesses with Databrary 1.0</h3>
 <ul>
-<li>Weaknesses with Databrary 1.0
-<ul>
-<li>The static documentation site is hosted on a separate, external server from the Databrary application.</li>
+<li>The static documentation site is hosted on a separate, external server from the Databrary application in order to make it easy for staff to edit and update without affecting the application. In practice, the static site is not updated often enough.</li>
 <li>The static site is hard to navigate, especially for new users.</li>
 <li>The static site does not have sufficient tutorial information for new users.</li>
-</ul></li>
 </ul>
+</div>
+<div id="requirements-for-databrary-2.0-1" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Requirements for Databrary 2.0</h3>
+<ul>
+<li>Create a workflow that makes it easier for staff to edit and update the static site.</li>
+<li>Improve static site navigation.</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-1" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+</div>
 </div>
 <div id="registration-page" class="section level2">
 <h2><span class="header-section-number">4.3</span> Registration page</h2>
+<div id="purpose-1" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Purpose</h3>
 <p>Example: <a href="http://nyu.databrary.org/register" class="uri">http://nyu.databrary.org/register</a></p>
 <ul>
-<li><p>Guides users through the process of registering for access, creating an account and password, and requesting <em>authorization</em> from an <em>institutional</em> or <em>individual</em> <em>sponsor</em>.</p></li>
-<li>Weaknesses with Databrary 1.0
+<li>Guides users through the process of registering for access, creating an account and password, and requesting <em>authorization</em> from an <em>institutional</em> or <em>individual</em> <em>sponsor</em>.</li>
+</ul>
+</div>
+<div id="weaknesses-with-databrary-1.0-2" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Weaknesses with Databrary 1.0</h3>
 <ul>
 <li><del>There is a bug. Users who log in are unable to select an authorizing <em>party</em>, neither an <em>institution</em> nor an <em>authorized investigator</em></del>.</li>
 <li>A list of currently active <em>authorized investigators</em> from an <em>institution</em> could be listed for the user to choose from based on the applicant’s <em>email</em>/user ID.</li>
 <li>Databrary itself could store and show to applicants for <em>authorized investigator</em> status the contact information we have on file at a given institution.</li>
 <li>Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.</li>
-<li>Databrary should by default, add users to an email list for future communication about the site.</li>
-</ul></li>
+<li>Databrary should by default add users to an email list for future communication about the site.</li>
 </ul>
 </div>
-<div id="profile-page" class="section level2">
-<h2><span class="header-section-number">4.4</span> Profile page</h2>
-<p>Example <a href="http://nyu.databrary.org/profile" class="uri">http://nyu.databrary.org/profile</a></p>
+<div id="requirements-for-databrary-2.0-2" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Requirements for Databrary 2.0</h3>
 <ul>
-<li>Weaknesses with Databrary 1.0
+<li>Databrary should by default add users to an email list for future communication about the site.</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-2" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>A list of currently active <em>authorized investigators</em> from an <em>institution</em> could be listed for the user to choose from based on the applicant’s <em>email</em>/user ID.</li>
+<li>Databrary itself could store and show to applicants for <em>authorized investigator</em> status the contact information we have on file at a given institution.</li>
+<li>Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.</li>
+</ul>
+</div>
+</div>
+<div id="user-profile-page" class="section level2">
+<h2><span class="header-section-number">4.4</span> User profile page</h2>
+<p>Example <a href="http://nyu.databrary.org/profile" class="uri">http://nyu.databrary.org/profile</a></p>
+<div id="purpose-2" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Purpose</h3>
+<ul>
+<li>To provide information about registered users on Databrary.</li>
+</ul>
+</div>
+<div id="weaknesses-with-databrary-1.0-3" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Weaknesses with Databrary 1.0</h3>
 <ul>
 <li>Data about individual users should be on a separate page from data about a user’s volumes and affiliates.</li>
 <li>The profile page should have more fields (e.g., Twitter, Facebook, other social media accounts, ResearchGate, GitHub, OSF, etc.)</li>
 <li>The profile page should use other services’ APIs where appropriate.</li>
 <li>The list of shared volumes should have preview windows (like on the search page) so that visitors can browse and stream (per permission level) video highlights listed here.</li>
-<li>Summary metadata about the volume (contains session data about participants, contains materials, participant demographic summaries, etc.)</li>
+<li>Summary metadata about shared volume (contains session data about participants, contains materials, participant demographic summaries, etc.) could be on the User profile page.</li>
 <li>No list of grants/funding sources is provided.</li>
-</ul></li>
 </ul>
+</div>
+<div id="requirements-for-databrary-2.0-3" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Requirements for Databrary 2.0</h3>
+<ul>
+<li>Create a user profile page separate from the Manage Volumes &amp; People page.</li>
+<li>The user profile page should have more fields (e.g., Twitter, Facebook, other social media accounts, ResearchGate, GitHub, OSF, etc.)</li>
+<li>The profile page should use other services’ APIs where appropriate.</li>
+<li>The user profile page should show the user’s registration authorization status (authorization pending/authorized).</li>
+<li>The user profile page should show whether the user is an authorized investigator or affiliate. If an affiliate, to which authorized investigators?</li>
+<li>The profile page should have analytics about the user (# of shared/unshared volumes).</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-3" class="section level3">
+<h3><span class="header-section-number">4.4.4</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>The user profile page could show a list of the user’s shared volumes.
+<ul>
+<li>The list of shared volumes should have preview windows (like on the search page) so that visitors can browse and stream (per permission level) video highlights listed here.</li>
+<li>Summary metadata about shared volume (contains session data about participants, contains materials, participant demographic summaries, etc.) could be on the User profile page.</li>
+</ul></li>
+<li>The user profile page could show a list of the user’s grants.</li>
+</ul>
+</div>
 </div>
 <div id="manage-volumes-people-page" class="section level2">
 <h2><span class="header-section-number">4.5</span> Manage Volumes &amp; People page</h2>
-<p>New page that instantiates volume and person management functionality of the Profile page in Databrary 1.0. The page should show attractive, flexible lists of projects, with user-settable defaults like sorting based on frequency of use, etc. The fundamental task of this interface is to edit <em>affiliates</em>‘access privileges to specific <em>volumes</em> or to groups of <em>volumes</em>. A secondary task of this interface is to edit <em>affiliates</em>’ access privileges to Databrary as a whole. The interface should clearly show what <em>volumes</em> an <em>affiliate</em> has read or read/write access to, and in turn, what <em>affiliates</em> have read or read/write access to a given volume.</p>
-<div id="design-spreadsheet-enter-data-tab" class="section level3">
-<h3><span class="header-section-number">4.5.1</span> <a href="https://nyu.databrary.org/volume/1/edit?page=design">Design Spreadsheet</a> &amp; <a href="https://nyu.databrary.org/volume/1/edit?page">Enter Data</a> Tab</h3>
-<p>These pages are used to design a participant-level spreadsheet and then to enter data about specific participant characteristics into that spreadsheet.</p>
-<p>There is a relatively new feature that allows a user to create a Databrary spreadsheet with selected fields and then upload a <a href="databrary-spreadsheet-template.csv">specially formatted CSV file</a>. This feature is described in <a href="https://nyu.databrary.org/slot/27587/0,183810/asset/122478/download?inline=true">this video</a>.</p>
-<p>Entering participant metadata is a big headache for many users, so this feature should be enhanced. For example, it would be great if the API supported direct uploading so that the researcher did not have to interact with the web interface.</p>
+<div id="purpose-3" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Purpose</h3>
+<ul>
+<li>To instantiates volume and person management functionality of the Profile page in Databrary 1.0.</li>
+</ul>
+</div>
+<div id="requirements-for-databrary-2.0-4" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Requirements for Databrary 2.0</h3>
+<ul>
+<li>The page should show attractive, flexible lists of projects, with user-settable defaults like sorting based on frequency of use, etc.</li>
+<li>The fundamental task of this interface is to edit <em>affiliates</em>’ access privileges to specific <em>volumes</em> or to groups of <em>volumes</em>.</li>
+<li>A secondary task of this interface is to edit <em>affiliates</em>’ access privileges to Databrary as a whole.</li>
+<li>The interface should clearly show what <em>volumes</em> an <em>affiliate</em> has read or read/write access to, and in turn, what <em>affiliates</em> have read or read/write access to a given volume.</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-4" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>The user profile page could show a list of the user’s shared volumes.</li>
+<li>The user profile page could show a list of the user’s grants.</li>
+</ul>
 </div>
 </div>
 <div id="volume-page" class="section level2">
 <h2><span class="header-section-number">4.6</span> Volume page</h2>
 <p>Example: <a href="https://nyu.databrary.org/volume/1" class="uri">https://nyu.databrary.org/volume/1</a></p>
-<ul>
-<li>Weaknesses in Databrary 1.0
+<div id="purpose-4" class="section level3">
+<h3><span class="header-section-number">4.6.1</span> Purpose</h3>
+</div>
+<div id="weaknesses-in-databrary-1.0" class="section level3">
+<h3><span class="header-section-number">4.6.2</span> Weaknesses in Databrary 1.0</h3>
 <ul>
 <li>Controls for editing the volume are hard to find</li>
 <li>The default avatar/icon is unattractive</li>
-<li>Several sub sections are expandable/collapsable with a mouse click but this behavior is obscure</li>
-<li>There is much wasted space</li>
+<li>Several sub-sections are expandable/collapsable with a mouse click but this behavior is obscure</li>
+<li>There is much wasted space.</li>
 <li>The names of investigators and collaborators are often cut-off</li>
 <li>The funder/agency labels should be clickable taking users to other pages where users can see what other volumes are funded by grant X, or agency Y.</li>
 <li>There is inconsistency in the use of the term <em>collaborator</em>. Here, it means someone with read or read/write access to the volume. But on the Volume Edit page, <em>collaborator</em> means this AND includes read/write/share/authorship status which is also called <em>investigator</em> status.</li>
@@ -366,27 +461,129 @@ div.tocify {
 <li>The volume page should be come a “project” page</li>
 <li>The volume page should implement modal (in place) editing of content</li>
 <li>The volume page should report more metadata about the project, including downloads, citations, etc., and do so in a more visually attractive manner.</li>
+</ul>
+</div>
+<div id="requirements-for-databrary-2.0-5" class="section level3">
+<h3><span class="header-section-number">4.6.3</span> Requirements for Databrary 2.0</h3>
+<ul>
+<li>Support entry and editing (modal, in place, not on separate page) of <em>volume</em> metadata:
+<ul>
+<li>DESCRIPTION OF DATASET</li>
+<li>LINKS</li>
+<li>INVESTIGATORS, COLLABORATORS</li>
+<li>Icon/avatar for volume/study</li>
+</ul></li>
+<li>Auto-generated HOW TO CITE citation
+<ul>
+<li>Auto-generated DOI.</li>
+</ul></li>
+<li>Highlights section (hide/show sections <strong>NOT</strong> needed)</li>
+<li>Data section (hide/show sections <strong>NOT</strong> needed)
+<ul>
+<li>Participant spreadsheet</li>
+</ul></li>
+<li>Separate section for Materials.</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-5" class="section level3">
+<h3><span class="header-section-number">4.6.4</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>Project-level metadata (downloads, citations, etc.)</li>
+<li>Auto-generated summary of FILE RELEASE LEVELS</li>
+<li>Show summary (pivot table)</li>
+<li>Save current display mode</li>
+<li>Change ‘volume’ to ‘project’ in API.</li>
+<li>Implement <em>virtual volumes</em> feature so I can incorporate <em>slots</em>/<em>sessions</em> from other shared volumes into my own workspace.
+<ul>
+<li>The <em>virtual volumes</em> will link to the volume/slot/assets stored elsewhere.</li>
 </ul></li>
 </ul>
 </div>
-<div id="slot-or-session-or-folder-view-page" class="section level2">
-<h2><span class="header-section-number">4.7</span> <em>Slot</em> or <em>Session</em> or <em>Folder</em> view page</h2>
-<p>Example: <a href="https://nyu.databrary.org/volume/1/slot/6256/-" class="uri">https://nyu.databrary.org/volume/1/slot/6256/-</a></p>
-</div>
-<div id="search-page" class="section level2">
-<h2><span class="header-section-number">4.8</span> Search page</h2>
-<p>Example: <a href="https://nyu.databrary.org/search" class="uri">https://nyu.databrary.org/search</a></p>
-<div id="expanding-information-for-searching-and-filtering" class="section level3">
-<h3><span class="header-section-number">4.8.1</span> Expanding information for searching and filtering</h3>
+<div id="eliminate" class="section level3">
+<h3><span class="header-section-number">4.6.5</span> Eliminate</h3>
 <ul>
-<li>As a user, I can search for data sets that have participants who meet specific criteria (gender, race, ethnicity) or who have been observed in specific contexts (lab, home, school, museum) or who speak specific languages, etc. Many of these data elements are reported in the Databrary spreadsheet.</li>
+<li>Comments section (hide/show sections <strong>NOT</strong> needed)</li>
 </ul>
 </div>
-<div id="searching-across-the-library-for-tagged-segments-within-videos" class="section level3">
-<h3><span class="header-section-number">4.8.2</span> Searching <em>across the library</em> for tagged segments within videos</h3>
+</div>
+<div id="design-spreadsheet-enter-data-tab" class="section level2">
+<h2><span class="header-section-number">4.7</span> <a href="https://nyu.databrary.org/volume/1/edit?page=design">Design Spreadsheet</a> &amp; <a href="https://nyu.databrary.org/volume/1/edit?page">Enter Data</a> Tab</h2>
+<div id="purpose-5" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Purpose</h3>
+<p>These pages are used to design a participant-level spreadsheet and then to hand-enter data about specific participant characteristics into that spreadsheet.</p>
+<p>There is a relatively new feature that allows a user to create a Databrary spreadsheet with selected fields and then upload a <a href="databrary-spreadsheet-template.csv">specially formatted CSV file</a>. This feature is described in <a href="https://nyu.databrary.org/slot/27587/0,183810/asset/122478/download?inline=true">this video</a>.</p>
+<p>Entering participant metadata is a big headache for many users, so this feature should be enhanced. For example, it would be great if the API supported direct uploading so that the researcher did not have to interact with the web interface.</p>
+</div>
+<div id="requirements-for-databrary-2.0-6" class="section level3">
+<h3><span class="header-section-number">4.7.2</span> Requirements for Databrary 2.0</h3>
 <ul>
-<li>As a user, I can store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files. The coding files have temporal onset/offset fields and follow the Datavyu or other open (e.g., BIDS) file specification.</li>
-<li>As a user, I can search for specific video segments with particular codes. The interface returns a set of thumbnail (low res/animated GIF-like?) segments that I can browse, select, and ultimately download.</li>
+<li>Add in-place (modal) spreadsheet design/editing features to the <em>volume</em>/<em>project</em> page interface.</li>
+<li>Move <em>materials</em> out of the data spreadsheet in the interface and move to a new Materials section on the <em>volume</em>/<em>project</em> page.</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-6" class="section level3">
+<h3><span class="header-section-number">4.7.3</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>Adopt/specify/promote a consistent file/directory format (BIDS with JSON or json-schema) for Databrary projects that will allow projects stored locally to be automatically “ingested” into Databrary.</li>
+<li>Allow auto-uploading of user spreadsheets (with validation). This enhances or extends the existing CSV upload/validation feature.</li>
+</ul>
+</div>
+</div>
+<div id="slot-or-session-or-folder-view-page" class="section level2">
+<h2><span class="header-section-number">4.8</span> <em>Slot</em> or <em>Session</em> or <em>Folder</em> view page</h2>
+<p>Example: <a href="https://nyu.databrary.org/volume/1/slot/6256/-" class="uri">https://nyu.databrary.org/volume/1/slot/6256/-</a></p>
+<div id="purpose-6" class="section level3">
+<h3><span class="header-section-number">4.8.1</span> Purpose</h3>
+<ul>
+<li>This interface allows users to view/preview files, edit metadata, upload files, and download files.</li>
+</ul>
+</div>
+<div id="requirements-for-databrary-2.0-7" class="section level3">
+<h3><span class="header-section-number">4.8.2</span> Requirements for Databrary 2.0</h3>
+<ul>
+<li>Eliminate “timeline” interface and replace with a file list that can be sorted by file type.</li>
+<li>Enable clickable “previews” of filetypes beyond audio and video, specifically, CSVs, PDFs, text files, annotation files (*.opf), etc.</li>
+<li>Rearrange interface elements to reduce vertical scrolling.</li>
+</ul>
+</div>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-7" class="section level3">
+<h3><span class="header-section-number">4.8.3</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>Build on or expand <em>slot</em> level tags so that these can be applied to video segments and are indexable by the search engine.</li>
+<li>Add browser-based annotation features to videos I have edit privileges on.</li>
+<li>Add browser-based annotation features to videos that are <em>shared</em> with me.
+<ul>
+<li>Does annotating a shared video create a <em>virtual volume</em> that I own?</li>
+<li>How do other users view/find all of the annotations linked to a given asset?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="search-page" class="section level2">
+<h2><span class="header-section-number">4.9</span> Search page</h2>
+<p>Example: <a href="https://nyu.databrary.org/search" class="uri">https://nyu.databrary.org/search</a></p>
+<div id="purpose-7" class="section level3">
+<h3><span class="header-section-number">4.9.1</span> Purpose</h3>
+<ul>
+<li>As a user, I want to search for data sets that have participants who meet specific criteria (gender, race, ethnicity) or who have been observed in specific contexts (lab, home, school, museum) or who speak specific languages, etc. Many of these data elements are reported in the Databrary spreadsheet.</li>
+<li>As a user, I want to store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files (<em>coding manuals</em>). The coding files have temporal onset/offset fields and follow the Datavyu or other open (e.g., BIDS) file specification.</li>
+<li>As a user, I want to search for specific video segments with particular codes. The interface returns a set of thumbnail (low res/animated GIF-like?) segments that I can browse, select, and ultimately download.</li>
+</ul>
+</div>
+</div>
+<div id="requirements-for-databrary-2.0-8" class="section level2">
+<h2><span class="header-section-number">4.10</span> Requirements for Databrary 2.0</h2>
+<ul>
+<li>Expand the search engine to include all fields contained in the spreadsheet.</li>
+</ul>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-8" class="section level3">
+<h3><span class="header-section-number">4.10.1</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>Add searching for tags embedded <em>within</em> slots so that specific slots within volumes can be returned.</li>
+<li>Return thumbnails of specific videos meeting search criteria.</li>
+<li>When file format for <em>coding manuals</em> has been finalized (e.g., probably JSON in json-schema.org type format), add coding manuals to search engine.</li>
+<li>Eventually, add search for keywords (from coding manuals linked to specific video segments) to return targeted segments.</li>
+<li>Allow users to clone or copy found volumes/slots/assets into <em>virtual volumes</em> that they can then annotate or reuse.</li>
 </ul>
 </div>
 </div>

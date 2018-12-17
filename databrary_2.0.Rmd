@@ -25,8 +25,8 @@ Databrary 2.0 can keep the PostgreSQL database.
 However, a new backend framework should be implemented in a language that has the following characteristics:
 
 - large, active developer community
-- high availability of (lower cost) development talent
-- large number of libraries for standard functions (e.g., authorization/permissions)
+- high availability of (lower cost) developer talent.
+- large number of libraries for standard functions (e.g., authorization/permissions).
 
 ## Front-end
 
@@ -38,7 +38,7 @@ Most users interact with the system via the browser, but a documented API is ava
 We expect that going forward, more external applications will use the API.
 The current API should be the development target for both the new backend and frontend work, but we acknowledge that some modifications to the API may be required in the transition from 1.0 to 2.0.
 
-The [R package](https://github.com/PLAY-behaviorome/databraryapi) could and should be expanded to include Python.
+The [R package](https://github.com/PLAY-behaviorome/databraryapi) could and should be expanded to include Python and possibly Julia.
 The package(s) should enable uploading and updating information on Databrary, in addition to the current read/download functionality.
 
 The current API enables time-delimited segments of recordings to be generated (via a call to ffmpeg?) and returned to the user.
@@ -50,6 +50,7 @@ For additional information and ideas, see [Advanced Access](advanced_access.html
 
 The application is hosted on servers at NYU.
 We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project's needs, both financially and for scaling.
+We should also explore whether hosting some of the data on servers located in the EU or Canada would overcome regulatory restrictions on data sharing and reuse.
 
 ## Static site
 
@@ -84,54 +85,178 @@ See also <https://www.databrary.org/resources/definitions.html>.
 
 Example: <http://nyu.databrary.org>
 
-- Weaknesses with Databrary 1.0
-    - The site should, but does not have a banner indicating that we use cookies, and asking permission to continue to do so.
-    - Terms and Conditions of Use are not posted. A draft Terms document is under review at NYU.
-    - No Privacy Policy is posted. A draft Privacy Policy is under review at NYU.
+### Purpose
+
+- To describe Databrary to the world and invite users to register.
+
+### Weaknesses with Databrary 1.0
+
+- The site should, but does not have a banner indicating that we use cookies, and asking permission to continue to do so.
+- Terms and Conditions of Use are not posted. A draft Terms document is under review at NYU.
+- No Privacy Policy is posted. A draft Privacy Policy is under review at NYU.
+
+### Requirements for Databrary 2.0
+
+- Add banner indicating that we use cookies, and asking permission to continue to do so.
+- Add Terms & Conditions of Use and Privacy Policy links to site.
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- The current carousel of projects and videos could be made more visually attractive.
     
 ## Static documentation site
 
-- Weaknesses with Databrary 1.0
-    - The static documentation site is hosted on a separate, external server from the Databrary application.
-    - The static site is hard to navigate, especially for new users.
-    - The static site does not have sufficient tutorial information for new users.
+Example: <http://www.databrary.org/resources.html>
+
+### Weaknesses with Databrary 1.0
+
+- The static documentation site is hosted on a separate, external server from the Databrary application in order to make it easy for staff to edit and update without affecting the application. In practice, the static site is not updated often enough.
+- The static site is hard to navigate, especially for new users.
+- The static site does not have sufficient tutorial information for new users.
+    
+### Requirements for Databrary 2.0
+
+- Create a workflow that makes it easier for staff to edit and update the static site.
+- Improve static site navigation.
+
+### Optional/desirable enhancements for Databrary 2.0+
     
 ## Registration page
+
+### Purpose
 
 Example: <http://nyu.databrary.org/register>
 
 - Guides users through the process of registering for access, creating an account and password, and requesting *authorization* from an *institutional* or *individual* *sponsor*.
 
-- Weaknesses with Databrary 1.0
-    - ~~There is a bug. Users who log in are unable to select an authorizing *party*, neither an *institution* nor an *authorized investigator*~~.
-    - A list of currently active *authorized investigators* from an *institution* could be listed for the user to choose from based on the applicant's *email*/user ID.
-    - Databrary itself could store and show to applicants for *authorized investigator* status the contact information we have on file at a given institution.
-    - Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.
-    - Databrary should by default, add users to an email list for future communication about the site.
-    
-## Profile page 
+### Weaknesses with Databrary 1.0
+
+- ~~There is a bug. Users who log in are unable to select an authorizing *party*, neither an *institution* nor an *authorized investigator*~~.
+- A list of currently active *authorized investigators* from an *institution* could be listed for the user to choose from based on the applicant's *email*/user ID.
+- Databrary itself could store and show to applicants for *authorized investigator* status the contact information we have on file at a given institution.
+- Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.
+- Databrary should by default add users to an email list for future communication about the site.
+
+### Requirements for Databrary 2.0
+
+- Databrary should by default add users to an email list for future communication about the site.
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- A list of currently active *authorized investigators* from an *institution* could be listed for the user to choose from based on the applicant's *email*/user ID.
+- Databrary itself could store and show to applicants for *authorized investigator* status the contact information we have on file at a given institution.
+- Databrary could facilitate the management of the authorization and registration process for staff. Right now, this is done semi-manually via Confluence.
+
+## User profile page 
 
 Example <http://nyu.databrary.org/profile>
 
-- Weaknesses with Databrary 1.0
-    - Data about individual users should be on a separate page from data about a user's volumes and affiliates.
-    - The profile page should have more fields (e.g., Twitter, Facebook, other social media accounts, ResearchGate, GitHub, OSF, etc.)
-    - The profile page should use other services' APIs where appropriate.
+### Purpose
+
+- To provide information about registered users on Databrary.
+
+### Weaknesses with Databrary 1.0
+
+- Data about individual users should be on a separate page from data about a user's volumes and affiliates.
+- The profile page should have more fields (e.g., Twitter, Facebook, other social media accounts, ResearchGate, GitHub, OSF, etc.)
+- The profile page should use other services' APIs where appropriate.
+- The list of shared volumes should have preview windows (like on the search page) so that visitors can browse and stream (per permission level) video highlights listed here.
+- Summary metadata about shared volume (contains session data about participants, contains materials, participant demographic summaries, etc.) could be on the User profile page.
+- No list of grants/funding sources is provided.
+
+### Requirements for Databrary 2.0
+
+- Create a user profile page separate from the Manage Volumes & People page.
+- The user profile page should have more fields (e.g., Twitter, Facebook, other social media accounts, ResearchGate, GitHub, OSF, etc.)
+- The profile page should use other services' APIs where appropriate.
+- The user profile page should show the user's registration authorization status (authorization pending/authorized).
+- The user profile page should show whether the user is an authorized investigator or affiliate.
+If an affiliate, to which authorized investigators?
+- The profile page should have analytics about the user (# of shared/unshared volumes).
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- The user profile page could show a list of the user's shared volumes.
     - The list of shared volumes should have preview windows (like on the search page) so that visitors can browse and stream (per permission level) video highlights listed here.
-    - Summary metadata about the volume (contains session data about participants, contains materials, participant demographic summaries, etc.)
-    - No list of grants/funding sources is provided.
-    
+    - Summary metadata about shared volume (contains session data about participants, contains materials, participant demographic summaries, etc.) could be on the User profile page.
+- The user profile page could show a list of the user's grants.
+
 ## Manage Volumes & People page
 
-New page that instantiates volume and person management functionality of the Profile page in Databrary 1.0.
-The page should show attractive, flexible lists of projects, with user-settable defaults like sorting based on frequency of use, etc.
-The fundamental task of this interface is to edit *affiliates*' access privileges to specific *volumes* or to groups of *volumes*.
-A secondary task of this interface is to edit *affiliates*' access privileges to Databrary as a whole.
-The interface should clearly show what *volumes* an *affiliate* has read or read/write access to, and in turn, what *affiliates* have read or read/write access to a given volume.
+### Purpose
 
-### [Design Spreadsheet](https://nyu.databrary.org/volume/1/edit?page=design) & [Enter Data](https://nyu.databrary.org/volume/1/edit?page) Tab
+- To instantiates volume and person management functionality of the Profile page in Databrary 1.0.
 
-These pages are used to design a participant-level spreadsheet and then to enter data about specific participant characteristics into that spreadsheet.
+### Requirements for Databrary 2.0
+
+- The page should show attractive, flexible lists of projects, with user-settable defaults like sorting based on frequency of use, etc.
+- The fundamental task of this interface is to edit *affiliates*' access privileges to specific *volumes* or to groups of *volumes*.
+- A secondary task of this interface is to edit *affiliates*' access privileges to Databrary as a whole.
+- The interface should clearly show what *volumes* an *affiliate* has read or read/write access to, and in turn, what *affiliates* have read or read/write access to a given volume.
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- The user profile page could show a list of the user's shared volumes.
+- The user profile page could show a list of the user's grants.
+
+## Volume page
+
+Example: <https://nyu.databrary.org/volume/1>
+
+### Purpose
+
+### Weaknesses in Databrary 1.0
+
+- Controls for editing the volume are hard to find
+- The default avatar/icon is unattractive
+- Several sub-sections are expandable/collapsable with a mouse click but this behavior is obscure
+- There is much wasted space.
+- The names of investigators and collaborators are often cut-off
+- The funder/agency labels should be clickable taking users to other pages where users can see what other volumes are funded by grant X, or agency Y.
+  - There is inconsistency in the use of the term *collaborator*. Here, it means someone with read or read/write access to the volume. But on the Volume Edit page, *collaborator* means this AND includes read/write/share/authorship status which is also called *investigator* status.
+- The term "highlights" may be misleading.
+- There should be a section for material separate from data
+- The pivot table operations on the sessions spreadsheet are slick, but may not be used by many. The font size of the pivot table text is small and not adjustable.
+- The "filter" and "summarize by" tabs may confuse users.
+- The "tags" and "comments" sections are not widely used.
+- The spreadsheet interface should be rethought.
+- The volume page should be come a "project" page
+- The volume page should implement modal (in place) editing of content
+- The volume page should report more metadata about the project, including downloads, citations, etc., and do so in a more visually attractive manner.
+    
+### Requirements for Databrary 2.0
+
+- Support entry and editing (modal, in place, not on separate page) of *volume* metadata:
+    - DESCRIPTION OF DATASET
+    - LINKS
+    - INVESTIGATORS, COLLABORATORS
+    - Icon/avatar for volume/study
+- Auto-generated HOW TO CITE citation
+    - Auto-generated DOI.
+- Highlights section (hide/show sections **NOT** needed)
+- Data section (hide/show sections **NOT** needed)
+    - Participant spreadsheet
+- Separate section for Materials.
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- Project-level metadata (downloads, citations, etc.)
+- Auto-generated summary of FILE RELEASE LEVELS
+- Show summary (pivot table)
+- Save current display mode
+- Change 'volume' to 'project' in API.
+- Implement *virtual volumes* feature so I can incorporate *slots*/*sessions* from other shared volumes into my own workspace.
+    - The *virtual volumes* will link to the volume/slot/assets stored elsewhere.
+
+### Eliminate
+
+- Comments section (hide/show sections **NOT** needed)
+
+## [Design Spreadsheet](https://nyu.databrary.org/volume/1/edit?page=design) & [Enter Data](https://nyu.databrary.org/volume/1/edit?page) Tab
+
+### Purpose
+
+These pages are used to design a participant-level spreadsheet and then to hand-enter data about specific participant characteristics into that spreadsheet.
 
 There is a relatively new feature that allows a user to create a Databrary spreadsheet with selected fields and then upload a [specially formatted CSV file](databrary-spreadsheet-template.csv).
 This feature is described in [this video](https://nyu.databrary.org/slot/27587/0,183810/asset/122478/download?inline=true).
@@ -139,46 +264,61 @@ This feature is described in [this video](https://nyu.databrary.org/slot/27587/0
 Entering participant metadata is a big headache for many users, so this feature should be enhanced.
 For example, it would be great if the API supported direct uploading so that the researcher did not have to interact with the web interface.
 
-## Volume page
+### Requirements for Databrary 2.0
 
-Example: <https://nyu.databrary.org/volume/1>
+- Add in-place (modal) spreadsheet design/editing features to the *volume*/*project* page interface.
+- Move *materials* out of the data spreadsheet in the interface and move to a new Materials section on the *volume*/*project* page.
 
-- Weaknesses in Databrary 1.0
-    - Controls for editing the volume are hard to find
-    - The default avatar/icon is unattractive
-    - Several sub sections are expandable/collapsable with a mouse click but this behavior is obscure
-    - There is much wasted space
-    - The names of investigators and collaborators are often cut-off
-    - The funder/agency labels should be clickable taking users to other pages where users can see what other volumes are funded by grant X, or agency Y.
-    - There is inconsistency in the use of the term *collaborator*. Here, it means someone with read or read/write access to the volume. But on the Volume Edit page, *collaborator* means this AND includes read/write/share/authorship status which is also called *investigator* status.
-    - The term "highlights" may be misleading.
-    - There should be a section for material separate from data
-    - The pivot table operations on the sessions spreadsheet are slick, but may not be used by many. The font size of the pivot table text is small and not adjustable.
-    - The "filter" and "summarize by" tabs may confuse users.
-    - The "tags" and "comments" sections are not widely used.
-    - The spreadsheet interface should be rethought.
-    - The volume page should be come a "project" page
-    - The volume page should implement modal (in place) editing of content
-    - The volume page should report more metadata about the project, including downloads, citations, etc., and do so in a more visually attractive manner.
+### Optional/desirable enhancements for Databrary 2.0+
+
+- Adopt/specify/promote a consistent file/directory format (BIDS with JSON or json-schema) for Databrary projects that will allow projects stored locally to be automatically "ingested" into Databrary.
+- Allow auto-uploading of user spreadsheets (with validation). This enhances or extends the existing CSV upload/validation feature.
     
 ## *Slot* or *Session* or *Folder* view page
 
 Example: <https://nyu.databrary.org/volume/1/slot/6256/->
 
+### Purpose
+
+- This interface allows users to view/preview files, edit metadata, upload files, and download files.
+
+### Requirements for Databrary 2.0
+
+- Eliminate "timeline" interface and replace with a file list that can be sorted  by file type.
+- Enable clickable "previews" of filetypes beyond audio and video, specifically, CSVs, PDFs, text files, annotation files (*.opf), etc.
+- Rearrange interface elements to reduce vertical scrolling.
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- Build on or expand *slot* level tags so that these can be applied to video segments and are indexable by the search engine.
+- Add browser-based annotation features to videos I have edit privileges on.
+- Add browser-based annotation features to videos that are *shared* with me.
+    - Does annotating a shared video create a *virtual volume* that I own?
+    - How do other users view/find all of the annotations linked to a given asset?
+
 ## Search page
 
 Example: <https://nyu.databrary.org/search>
 
-### Expanding information for searching and filtering
+### Purpose
 
-- As a user, I can search for data sets that have participants who meet specific criteria (gender, race, ethnicity) or who have been observed in specific contexts (lab, home, school, museum) or who speak specific languages, etc.
+- As a user, I want to search for data sets that have participants who meet specific criteria (gender, race, ethnicity) or who have been observed in specific contexts (lab, home, school, museum) or who speak specific languages, etc.
 Many of these data elements are reported in the Databrary spreadsheet.
-
-### Searching *across the library* for tagged segments within videos
-
-- As a user, I can store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files. 
+- As a user, I want to store and share coding/annotation files with text-based codes/tags/annotations linked to code/tag definition files (*coding manuals*). 
 The coding files have temporal onset/offset fields and follow the Datavyu or other open (e.g., BIDS) file specification.
-- As a user, I can search for specific video segments with particular codes. The interface returns a set of thumbnail (low res/animated GIF-like?) segments that I can browse, select, and ultimately download.
+- As a user, I want to search for specific video segments with particular codes. The interface returns a set of thumbnail (low res/animated GIF-like?) segments that I can browse, select, and ultimately download.
+
+## Requirements for Databrary 2.0
+
+- Expand the search engine to include all fields contained in the spreadsheet.
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- Add searching for tags embedded *within* slots so that specific slots within volumes can be returned.
+- Return thumbnails of specific videos meeting search criteria.
+- When file format for *coding manuals* has been finalized (e.g., probably JSON in json-schema.org type format), add coding manuals to search engine.
+- Eventually, add search for keywords (from coding manuals linked to specific video segments) to return targeted segments.
+- Allow users to clone or copy found volumes/slots/assets into *virtual volumes* that they can then annotate or reuse.
 
 # Access model
 
