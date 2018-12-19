@@ -221,7 +221,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Databrary 2.0</h1>
 <h4 class="author"><em>Rick Gilmore</em></h4>
-<h4 class="date"><em>2018-12-17 09:54:46</em></h4>
+<h4 class="date"><em>2018-12-18 08:37:08</em></h4>
 
 </div>
 
@@ -556,6 +556,7 @@ div.tocify {
 <li>Does annotating a shared video create a <em>virtual volume</em> that I own?</li>
 <li>How do other users view/find all of the annotations linked to a given asset?</li>
 </ul></li>
+<li>Enable visualization of coding file (e.g. Datavyu) columns.</li>
 </ul>
 </div>
 </div>
@@ -588,15 +589,34 @@ div.tocify {
 </div>
 </div>
 </div>
+<div id="backend" class="section level1">
+<h1><span class="header-section-number">5</span> Backend</h1>
+<div id="requirements-for-databrary-2.0-9" class="section level2">
+<h2><span class="header-section-number">5.1</span> Requirements for Databrary 2.0</h2>
+<ul>
+<li>On video/audio upload, a transcoding process using NYU’s HPC is spawned.
+<ul>
+<li>Both the transcoded and original format files are stored. Both file formats should be displayed in the <em>slot</em>/<em>session</em>/<em>folder</em> view.</li>
+</ul></li>
+<li>Implement unit tests and other robustness measures site-wide.</li>
+</ul>
+<div id="optionaldesirable-enhancements-for-databrary-2.0-9" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Optional/desirable enhancements for Databrary 2.0+</h3>
+<ul>
+<li>A new admin dashboard/page for monitoring site-wide status, tracking transcoding errors, and helping with the registration/authorization workflow.</li>
+</ul>
+</div>
+</div>
+</div>
 <div id="access-model" class="section level1">
-<h1><span class="header-section-number">5</span> Access model</h1>
+<h1><span class="header-section-number">6</span> Access model</h1>
 <div id="sponsor-model" class="section level2">
-<h2><span class="header-section-number">5.1</span> Sponsor model</h2>
+<h2><span class="header-section-number">6.1</span> Sponsor model</h2>
 <p>Databrary employs a <em>sponsor</em> model, where specific <em>parties</em> can grant access privileges to other <em>parties</em>. For example, when an individual institution signs the <em>Databrary Access Agreement</em> for the first time, Databrary becomes a sponsor of that institution. That institution, in turn, becomes a sponsor of a specific <em>Authorized Investigator</em> who is employed by and approved by the institution. Subsequently, <em>Authorized Investigators</em> may choose to <em>sponsor</em> (grant access privileges to) other <em>Authorized Investigators</em> or <em>Affiliates</em>.</p>
 <p>Going forward, we will need to consider account/access types for i) people who are not affiliated with institutions but require access to subsets of shared materials (private collections), and ii) commercial entities.</p>
 </div>
 <div id="authorized-investigator-privileges" class="section level2">
-<h2><span class="header-section-number">5.2</span> Authorized Investigator privileges</h2>
+<h2><span class="header-section-number">6.2</span> Authorized Investigator privileges</h2>
 <p><em>Authorized Investigators</em> are automatically granted (read/download) access to all <em>shared</em> data and materials on Databrary. <em>Authorized Investigators</em> may also create new volumes, read/write/edit/change access to volumes. On a volume-by-volume basis, <em>Authorized Investigators</em> choose who is a <em>collaborator</em> (view/read or view/read/write privileges) and who is an <em>investigator</em> (view/read/write/authorship/share privileges). <em>Authorized Investigators</em> also choose whether or not each <em>Affiliate</em> has (read/download) privileges on Databrary.</p>
 </div>
 </div>

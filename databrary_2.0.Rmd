@@ -21,16 +21,28 @@ The 2.0 version should streamline the site, focusing on core features that serve
 
 # Technology stack
 
-Databrary 2.0 can keep the PostgreSQL database.
-However, a new backend framework should be implemented in a language that has the following characteristics:
+## Backend
 
-- large, active developer community
-- high availability of (lower cost) developer talent.
-- large number of libraries for standard functions (e.g., authorization/permissions).
+### Requirements for Databrary 2.0
+
+- Databrary 2.0 can keep the PostgreSQL database. However, a new backend framework should be implemented in a language that has the following characteristics:
+    - large, active developer community
+    - high availability of (lower cost) developer talent.
+    - large number of libraries for standard functions (e.g., authorization/permissions).
+- On video/audio upload, a transcoding process using NYU's HPC is spawned.
+    - Both the transcoded and original format files are stored. Both file formats should be displayed in the *slot*/*session*/*folder* view.
+- Implement unit tests and other robustness measures site-wide.
+- Implement load-balancing and other measures that allow the system to scale.
+
+### Optional/desirable enhancements for Databrary 2.0+
+
+- A new admin dashboard/page for monitoring site-wide status, tracking transcoding errors, and helping with the registration/authorization workflow.
 
 ## Front-end
 
-The current Javascript (AngularJS 1.x) frontend should be updated.
+### Requirements for Databrary 2.0
+
+- The current Javascript (AngularJS 1.x) frontend should be updated.
 
 ## API
 
@@ -38,27 +50,26 @@ Most users interact with the system via the browser, but a documented API is ava
 We expect that going forward, more external applications will use the API.
 The current API should be the development target for both the new backend and frontend work, but we acknowledge that some modifications to the API may be required in the transition from 1.0 to 2.0.
 
-The [R package](https://github.com/PLAY-behaviorome/databraryapi) could and should be expanded to include Python and possibly Julia.
-The package(s) should enable uploading and updating information on Databrary, in addition to the current read/download functionality.
+### Requirements for Databrary 2.0
 
-The current API enables time-delimited segments of recordings to be generated (via a call to ffmpeg?) and returned to the user.
+### Optional/desirable enhancements for Databrary 2.0+
+
+- The [R package](https://github.com/PLAY-behaviorome/databraryapi) could and should be expanded to include Python and possibly Julia. The package(s) should enable uploading and updating information on Databrary, in addition to the current read/download functionality.
+- The current API enables time-delimited segments of recordings to be generated (via a call to ffmpeg?) and returned to the user.
 We will need to consider ways to optimize this function going forward, including caching.
-
-For additional information and ideas, see [Advanced Access](advanced_access.html).
+- For additional information and ideas, see [Advanced Access](advanced_access.html).
 
 ## Servers
 
-The application is hosted on servers at NYU.
-We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project's needs, both financially and for scaling.
-We should also explore whether hosting some of the data on servers located in the EU or Canada would overcome regulatory restrictions on data sharing and reuse.
+### Requirements for Databrary 2.0
 
-## Static site
+- The application is hosted on servers at NYU and should remain there for the time being.
 
-The static documentation site is located on a separate server from the application.
-The documentation site is generated via Pelican from Markdown.
-A new scheme for updating and maintaining the static documentation site should be implemented.
+### Optional/desirable enhancements for Databrary 2.0+
 
-All code should be shared on GitHub: <http://github.com/databrary> so that active outreach efforts to the open source developer community can expand.
+- We should explore whether moving Databrary 2.0 to cloud (e.g., AWS) storage and compute would better serve the project's needs, both financially and for scaling.
+- We should also explore whether hosting some of the data on servers located in the EU or Canada would overcome regulatory restrictions on data sharing and reuse.
+
 
 # Glossary 
 
@@ -92,8 +103,8 @@ Example: <http://nyu.databrary.org>
 ### Weaknesses with Databrary 1.0
 
 - The site should, but does not have a banner indicating that we use cookies, and asking permission to continue to do so.
-- Terms and Conditions of Use are not posted. A draft Terms document is under review at NYU.
-- No Privacy Policy is posted. A draft Privacy Policy is under review at NYU.
+- Terms and Conditions of Use are not posted. (A draft Terms document is under review at NYU).
+- No Privacy Policy is posted. (A draft Privacy Policy is under review at NYU).
 
 ### Requirements for Databrary 2.0
 
@@ -103,7 +114,7 @@ Example: <http://nyu.databrary.org>
 ### Optional/desirable enhancements for Databrary 2.0+
 
 - The current carousel of projects and videos could be made more visually attractive.
-    
+
 ## Static documentation site
 
 Example: <http://www.databrary.org/resources.html>
@@ -111,9 +122,15 @@ Example: <http://www.databrary.org/resources.html>
 ### Weaknesses with Databrary 1.0
 
 - The static documentation site is hosted on a separate, external server from the Databrary application in order to make it easy for staff to edit and update without affecting the application. In practice, the static site is not updated often enough.
+- The documentation site is generated via Pelican from Markdown.
 - The static site is hard to navigate, especially for new users.
 - The static site does not have sufficient tutorial information for new users.
-    
+
+### Requirements for Databrary 2.0
+
+- A new scheme for updating and maintaining the static documentation site should be implemented.
+- All code should be shared on GitHub: <http://github.com/databrary> so that active outreach efforts to the open source developer community can expand.
+
 ### Requirements for Databrary 2.0
 
 - Create a workflow that makes it easier for staff to edit and update the static site.
@@ -169,10 +186,7 @@ Example <http://nyu.databrary.org/profile>
 - Create a user profile page separate from the Manage Volumes & People page.
 - The user profile page should have more fields (e.g., Twitter, Facebook, other social media accounts, ResearchGate, GitHub, OSF, etc.)
 - The profile page should use other services' APIs where appropriate.
-- The user profile page should show the user's registration authorization status (authorization pending/authorized).
-- The user profile page should show whether the user is an authorized investigator or affiliate.
-If an affiliate, to which authorized investigators?
-- The profile page should have analytics about the user (# of shared/unshared volumes).
+- The user profile page should show the user's registration/authorization status (authorization pending/authorized).
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
@@ -180,6 +194,10 @@ If an affiliate, to which authorized investigators?
     - The list of shared volumes should have preview windows (like on the search page) so that visitors can browse and stream (per permission level) video highlights listed here.
     - Summary metadata about shared volume (contains session data about participants, contains materials, participant demographic summaries, etc.) could be on the User profile page.
 - The user profile page could show a list of the user's grants.
+- The user profile page should show whether the user is an authorized investigator or affiliate.
+If an affiliate, to which authorized investigators?
+- User-selectable project list.
+- The profile page should have analytics about the user (# of shared/unshared volumes).
 
 ## Manage Volumes & People page
 
@@ -196,8 +214,9 @@ If an affiliate, to which authorized investigators?
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
-- The user profile page could show a list of the user's shared volumes.
-- The user profile page could show a list of the user's grants.
+- The user profile page could show a list of the user's shared volumes that are selected from the Manage Volumes & People page.
+- The user profile page or Manage Volumes & People page could show a list of the user's grants and the links to the related project.
+    - Funding sources could link to NIH Reporter or NSF Fastlane page for the grant.
 
 ## Volume page
 
@@ -240,13 +259,14 @@ Example: <https://nyu.databrary.org/volume/1>
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
-- Project-level metadata (downloads, citations, etc.)
-- Auto-generated summary of FILE RELEASE LEVELS
-- Show summary (pivot table)
-- Save current display mode
-- Change 'volume' to 'project' in API.
 - Implement *virtual volumes* feature so I can incorporate *slots*/*sessions* from other shared volumes into my own workspace.
     - The *virtual volumes* will link to the volume/slot/assets stored elsewhere.
+- Consider having "bibliographic" contributors to volume/project.
+- Project-level metadata (downloads, citations, etc.)
+- Auto-generated summary of FILE RELEASE LEVELS
+- Show summary (pivot table).
+- Save current display mode.
+- Change 'volume' to 'project' in API.
 
 ### Eliminate
 
@@ -273,6 +293,7 @@ For example, it would be great if the API supported direct uploading so that the
 
 - Adopt/specify/promote a consistent file/directory format (BIDS with JSON or json-schema) for Databrary projects that will allow projects stored locally to be automatically "ingested" into Databrary.
 - Allow auto-uploading of user spreadsheets (with validation). This enhances or extends the existing CSV upload/validation feature.
+- Consider Google sheets mapping.
     
 ## *Slot* or *Session* or *Folder* view page
 
@@ -284,9 +305,10 @@ Example: <https://nyu.databrary.org/volume/1/slot/6256/->
 
 ### Requirements for Databrary 2.0
 
-- Eliminate "timeline" interface and replace with a file list that can be sorted  by file type.
+- Eliminate "timeline" interface and replace with a file list that can be sortedby file type, sharing release level, etc.
 - Enable clickable "previews" of filetypes beyond audio and video, specifically, CSVs, PDFs, text files, annotation files (*.opf), etc.
 - Rearrange interface elements to reduce vertical scrolling.
+- Fix downloading of files in native (non-transcoded) formats. **Replicate**
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
@@ -295,6 +317,7 @@ Example: <https://nyu.databrary.org/volume/1/slot/6256/->
 - Add browser-based annotation features to videos that are *shared* with me.
     - Does annotating a shared video create a *virtual volume* that I own?
     - How do other users view/find all of the annotations linked to a given asset?
+- Enable visualization of coding file (e.g. Datavyu) data.
 
 ## Search page
 
@@ -310,7 +333,7 @@ The coding files have temporal onset/offset fields and follow the Datavyu or oth
 
 ## Requirements for Databrary 2.0
 
-- Expand the search engine to include all fields contained in the spreadsheet.
+- Expand the search/filter engine to include all fields contained in the spreadsheet.
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
