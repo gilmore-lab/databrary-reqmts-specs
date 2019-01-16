@@ -1,0 +1,45 @@
+{
+  "$id": "https://example.com/video-code.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Video segment annotations",
+  "description": "Annotations applied to a spatial and temporal segment of video",
+  "required": [ "t_onset", "code_value" ],
+  "type": "object",
+  "properties": {
+    "t_onset": {
+      "type": "number",
+      "description": "Onset time",
+      "minimum": 0
+    },
+    "t_offset": {
+      "type": "number",
+      "description": "Offset time",
+      "minimum": 0
+    },
+    "code_value": {
+      "type": "string",
+      "description": "A code or codes that apply to this temporal segment"
+    },
+    "region": {
+      "type": "array",
+      "description": "Spatial region to which a code applies.",
+      "items": { 
+        "$ref": "#/definitions/screen_coords" 
+        }
+    }
+  },
+  "definitions": {
+    "type": "array",
+    "required": ["h_coord", "v_coord"],
+    "properties": {
+      "h_coord": {
+        "type": "number",
+        "mininum": 0
+      },
+      "v_coord": {
+        "type": "number",
+        "mininum": 0
+      }
+    }
+  }
+}

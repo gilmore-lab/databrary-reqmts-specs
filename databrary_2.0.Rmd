@@ -203,7 +203,7 @@ If an affiliate, to which authorized investigators?
 
 ### Purpose
 
-- To instantiates volume and person management functionality of the Profile page in Databrary 1.0.
+- To instantiate volume and person management functionality of the Profile page in Databrary 1.0.
 
 ### Requirements for Databrary 2.0
 

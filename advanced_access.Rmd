@@ -14,6 +14,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Purpose
+
+This document provides short summaries about how various advanced access features might be implemented.
+
 # API
 
 ## Access video segments
@@ -37,14 +41,19 @@ We want a useful means of storing richer code definitions and linking them to th
 
 - Many computer vision algorithms return bounding boxes {(x1,y1), (x2,y2)} or bounding polygons {(x1,y1), (x2,y2), ..., (xn,yn)} indicating the spatial region (in image coordinates) that the code(s) apply to.
 - Within Databrary's [asset/file viewer interface](databrary_1.0.html#462_view), consider enabling the application of bounding boxes or bounding polygons to video segments to which user-defined annotations/codes can be added.
-    - These bounding regions can be exported in Datavyu (.opf) format for future visualization within Datavyu.
+    - These bounding regions can be exported in Datavyu (.opf) format for future visualization within Datavyu or in a more generalizable data format we develop based on [JSON schema](json/video_code.json) and/or BIDS.
 
 # Search for tagged segments
 
-- Search across a volume/project or across Databrary, see [Databrary 1.0 Search Page](databrary_1.0.html#47_search_page)
-- Return thumbnails (low res animated GIF) for browsing/previewing
-- Select/filter & download/clone for reuse
-
+- Search across a volume/project or across Databrary, see [Databrary 1.0 Search Page](databrary_1.0.html#47_search_page).
+- Return thumbnails (low res animated GIF) for browsing/previewing.
+- Select/filter & download/clone for reuse.
+- Implementation steps
+    - Search term, e.g. 'locomotion' searches for the term in a set of stored coding manuals.
+        - The coding manuals are stored in JSON schema-like formats, with fields including `code_name`, `code_description`, `code_values`: {'l':'locomotion', 'h':'hold', '.':'undetermined'}
+        - From the *volumes* with coding manuals whose `code_decription` fields match the search term and have *slots* with coding files with the valid `code_values`...
+        - Find the video segments (start_ms, end_ms) that match the code value, e.g. 'l'; create and return the URI(s) for the found segment(s).
+        
 # Clone/copy or virtual volumes
 
 - As a user, I want to reuse another investigator's data, so I can choose to 'clone' or 'copy' that data to my own workspace (a volume that contains data from other volumes) in a way that maintains information about the original source.
