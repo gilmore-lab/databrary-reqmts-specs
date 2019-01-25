@@ -211,6 +211,7 @@ If an affiliate, to which authorized investigators?
 - The fundamental task of this interface is to edit *affiliates*' access privileges to specific *volumes* or to groups of *volumes*.
 - A secondary task of this interface is to edit *affiliates*' access privileges to Databrary as a whole.
 - The interface should clearly show what *volumes* an *affiliate* has read or read/write access to, and in turn, what *affiliates* have read or read/write access to a given volume.
+- Right now an Authorized Investigator should be adding affiliates. However a Manager can add affiliates as their own affiliate. This needs to be changed so that Manager access can add affiliates on behalf of their Authorized investigator. Affiliates should not have their own affiliates.
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
