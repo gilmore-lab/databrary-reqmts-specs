@@ -156,7 +156,9 @@ Example: <http://nyu.databrary.org/register>
 
 ### Requirements for Databrary 2.0
 
-- Databrary should by default add users to an email list for future communication about the site.
+- Databrary should by default add users to an email list for future communication about the site (upon authorization).
+- Should require an institutional email address (.edu/.org/.gov) such that gmail/yahoo/outlook are unacceptable options.
+- Update the list of information requried at the time of registration to include additional items such as the link to institutional profile page.
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
