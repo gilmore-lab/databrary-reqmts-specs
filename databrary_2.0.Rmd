@@ -354,9 +354,28 @@ Subsequently, *Authorized Investigators* may choose to *sponsor* (grant access p
 
 Going forward, we will need to consider account/access types for i) people who are not affiliated with institutions but require access to subsets of shared materials (private collections), and ii) commercial entities.
 
+The following access privileges describes the status quo as of 2019-05-10.
+
 ## Authorized Investigator privileges
 
-*Authorized Investigators* are automatically granted (read/download) access to all *shared* data and materials on Databrary.
-*Authorized Investigators* may also create new volumes, read/write/edit/change access to volumes.
+*Authorized Investigators* are automatically granted (read/download) access to all *shared* with *Authorized Users* and *Learning Audiences* data and materials on Databrary.
+*Authorized Investigators* may also create/delete new volumes, read/write/edit/share (change access to) volumes they have created.
+*Authorized Investigators* may *sponsor* *Affiliates* and grant affiliates access to specific volumes, an *Authorized Investigators* complete volumes, and/or shared volumes on Databrary.
 On a volume-by-volume basis, *Authorized Investigators* choose who is a *collaborator* (view/read or view/read/write privileges) and who is an *investigator* (view/read/write/authorship/share privileges).
 *Authorized Investigators* also choose whether or not each *Affiliate* has (read/download) privileges on Databrary.
+*Authorized Investigators* may give/remove selected *Affiliates* *Manager* status.
+
+## Affiliate privileges
+
+### *Manager* status
+
+*Affiliates* (with *Manager* status) may read/write/edit/share (change access to) volumes they did not create, but have been added to with *Investigator* privileges by the volume creator.
+*Affiliates* (with *Manager* status) who are *Collaborators* on a volume, may read/write/edit/delete files in sessions and create/edit/delete sessions. These *Affiliates* may NOT share the volume, however.
+*Affiliates* (with *Manager* status) may create volumes and share volumes without responsible *Authorized Investigator* receiving a notification, nor is the *Authorized Investigator* added to any newly created volume with *Investigator* privileges.
+*Affiliates* (with *Manager* status) may add/delete affiliates and no notification will be sent to the *Sponsoring Authorized Investigator*.
+*Affiliates* (with *Manager* status) may *grant authorization* to another *Affiliate*, and then grant the new *Affiliate* access to shared Databrary data as an *Authorized Investigator* or *Affiliate*. The new *Affiliates* may also be granted *Manager* status over the auhtorizing *Affiliate's* volume.
+
+### No manager status
+
+*Affiliates* (without *Manager status*) may receive *read/write*, *read-only*, *shared*, *public*, or *no access* to the sponsoring *Authorized Investigator* or *Affiliate's* volumes.
+*Affiliates* (without *Manager status*) may be granted *read/download* access to shared Databrary volumes.

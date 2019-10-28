@@ -1,0 +1,188 @@
+---
+title: "schema-planning"
+author: "Rick Gilmore"
+date: "`r Sys.time()`"
+output:
+  html_document:
+    keep_md: true
+    theme: lumen
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Install packages from Ognyanova, K. (2019)
+# install.packages("igraph") 
+# install.packages("network") 
+# install.packages("sna")
+# install.packages("ggraph")
+# install.packages("visNetwork")
+# install.packages("threejs")
+# install.packages("networkD3")
+# install.packages("ndtv")
+library("DiagrammeR")
+```
+
+# Purpose
+
+This document contains some work related to planning for the Databrary 2.0 schema.
+
+# Resources
+
+- Ognyanova, K. (2019) Network visualization with R. Retrieved from www.kateto.net/network-visualization. <http://kateto.net/network-visualization>
+- ggnet: <https://briatte.github.io/ggnet/>
+
+## Understanding the network data format
+
+Ognyanova 2019 contains several datasets.
+I've downloaded them, and will now import them to understand the basic network data format.
+
+```{r}
+nodes <- read.csv("sunbelt2019/Data files/Dataset1-Media-Example-NODES.csv", header=T, as.is=T)
+links <- read.csv("sunbelt2019/Data files/Dataset1-Media-Example-EDGES.csv", header=T, as.is=T)
+
+head(nodes)
+head(links)
+```
+
+# Data collection scenarios
+
+## Separate videos for each participant
+
+Let's visualize a scenario where there is a single video for each participant.
+
+```{r}
+grViz("digraph {
+	  style=filled
+		color=lightgrey
+		node [style=filled, color=lightblue]
+    video_1 -> {person_1, datavyu_1}
+		video_2 -> {person_2, datavyu_2}
+    video_3 -> {person_3, datavyu_3}
+    videos -> {video_1, video_2, video_3}
+    code_1 -> {datavyu_1, datavyu_2, datavyu_3}
+    code_2 -> {datavyu_1, datavyu_2, datavyu_3}
+    codes -> {code_1, code_2}
+    persons -> {person_1, person_2, person_3}
+		}")
+```
+
+The `igraph` package seems to be more flexible, and it is still supported.
+So, let's try a version using it.
+
+```{r}
+library(igraph)
+el <- rbind(c("vid_1","per_1"), c("vid_2","per_2"), c("vid_3","per_3"), c("vids", "vid_1"), c("vids", "vid_2"), c("vids", "vid_3"))
+g0 <- graph_from_edgelist(el)
+#g0$layout <- layout_in_circle
+# l <- layout_with_fr(g0)
+# l <- layout_on_grid(g0)
+l <- layout_nicely(g0)
+plot(g0, vertex.size=40, vertex.color="gray", layout = l)
+```
+
+Ok, so now let's add individual Datavyu and demographic data files to this.
+
+```{r}
+el2 <- rbind(el, c("vid_1", "dv_1"), c("vid_2", "dv_2"), c("vid_3", "dv_3"))
+g2 <- graph_from_edgelist(el2)
+l <- layout_nicely(g2)
+plot(g2, vertex.size=40, vertex.color="gray", layout = l)
+```
+
+Let's now add some codes that are contained within the Datavyu files.
+
+```{r}
+el3 <- rbind(el2, c("dv_1", "c_1"), c("dv_2", "c_1"), c("dv_3", "c_1"))
+g3 <- graph_from_edgelist(el3)
+l <- layout_nicely(g3)
+plot(g3, vertex.size=30, vertex.color="gray", layout = l)
+```
+
+Let's next try to do this using a data frame, and adding demographic data `demo_*`.
+
+```{r}
+edges <- data.frame(from = c("vid_1", "vid_2", "vid_3", "vid_1", "vid_2", "vid_3", "per_1", "per_2", "per_3"), to=c("per_1", "per_2", "per_3", "dv_1", "dv_2", "dv_3", "demo_1", "demo_2", "demo_3"), weight= c(1, 1, 1, 1, 1, 1, 1, 1, 1))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="gray")
+```
+
+A project links these nodes together.
+A project could consist of a single 'wave'.
+
+```{r}
+edges <- data.frame(from = c("vid_1", "vid_2", "vid_3", "vid_1", "vid_2", "vid_3", "per_1", "per_2", "per_3", "proj", "proj", "proj"), to=c("per_1", "per_2", "per_3", "dv_1", "dv_2", "dv_3", "demo_1", "demo_2", "demo_3", "vid_1", "vid_2", "vid_3"), weight= c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="gray")
+```
+
+Or maybe the more natural organization would be at the person level.
+
+```{r}
+edges <- data.frame(from = c("vid_1", "vid_2", "vid_3", "vid_1", "vid_2", "vid_3", "per_1", "per_2", "per_3", "proj", "proj", "proj"), to=c("per_1", "per_2", "per_3", "dv_1", "dv_2", "dv_3", "demo_1", "demo_2", "demo_3", "per_1", "per_2", "per_3"), weight= c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="gray")
+```
+
+## Sample organization for PLAY
+
+Let's try two sites and have indices (subscripts) representing the site and participant number, respectively.
+
+```{r}
+edges <- data.frame(from = c("vid_11", "vid_12", "vid_21", "vid_11", "vid_21", "vid_12", "per_11", "per_12", "per_21", "site_1", "site_1", "site_2"), to=c("per_11", "per_12", "per_21", "dv_11", "dv_12", "dv_21", "demo_11", "demo_12", "demo_21", "per_11", "per_12", "per_21"), weight= c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="white")
+```
+
+We could also add an age group node.
+
+```{r}
+edges <- data.frame(from = c("vid_11", "vid_12", "vid_21", "vid_11", "vid_21", "vid_12", "per_11", "per_12", "per_21", "site_1", "site_1", "site_2", "per_11", "per_12", "per_21"), to=c("per_11", "per_12", "per_21", "dv_11", "dv_12", "dv_21", "demo_11", "demo_12", "demo_21", "per_11", "per_12", "per_21", "12", "18", "18"), weight= c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="white")
+```
+
+This hard-to-read graph gathers age groups across sites.
+
+Let's try some other scenarios.
+
+## One video, multiple people
+
+```{r}
+edges <- data.frame(from = c("v1", "v1", "v1", "v1", "v1"), to=c("p1", "p2", "p3", "p4", "p5"))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="white")
+```
+
+Let's now add one Datavyu file linked to the video.
+
+```{r}
+edges <- data.frame(from = c("v1", "v1", "v1", "v1", "v1", "v1"), to=c("p1", "p2", "p3", "p4", "p5", "d1"))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="white")
+```
+
+And now link the Datavyu file (or really segments) to the people.
+
+```{r}
+edges <- data.frame(from = c("v1", "v1", "v1", "v1", "v1", "v1", "d1", "d1", "d1", "d1", "d1", "s1", "s2", "s3", "s4", "s5"), to=c("p1", "p2", "p3", "p4", "p5", "d1", "s1", "s2", "s3", "s4", "s5", "p1", "p2", "p3", "p4", "p5"))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="white")
+```
+
+## One project, multiple measures per person
+
+Imagine that there are video recordings, a survey, and EEG all collected as part of Wave 1 (`w1`).
+
+```{r}
+edges <- data.frame(from = c("p1", "p2", "p1", "p2", "p1", "p2", "p1", "p2"), to = c("v1", "v2", "s1", "s2", "e1", "e2", "w1", "w1"))
+g <- graph_from_data_frame(edges, directed = FALSE)
+plot(g, vertex.size=30, vertex.color="white")
+```
+
+Here, the actual assets might be the survey file, the video, and the EEG file.
+There is likely to be data associated with the participants and the wave, but that may not need to be stored as specific asset files.
