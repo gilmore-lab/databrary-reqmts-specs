@@ -156,7 +156,9 @@ Example: <http://nyu.databrary.org/register>
 
 ### Requirements for Databrary 2.0
 
-- Databrary should by default add users to an email list for future communication about the site.
+- Databrary should by default add users to an email list for future communication about the site (upon authorization).
+- Should require an institutional email address (.edu/.org/.gov) such that gmail/yahoo/outlook are unacceptable options.
+- Update the list of information requried at the time of registration to include additional items such as the link to institutional profile page.
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
@@ -211,6 +213,7 @@ If an affiliate, to which authorized investigators?
 - The fundamental task of this interface is to edit *affiliates*' access privileges to specific *volumes* or to groups of *volumes*.
 - A secondary task of this interface is to edit *affiliates*' access privileges to Databrary as a whole.
 - The interface should clearly show what *volumes* an *affiliate* has read or read/write access to, and in turn, what *affiliates* have read or read/write access to a given volume.
+- affiliate with lab manager privileges can add affiliates with the approval of the authorizing investigator. An affiliate should not add an affiliate on their own behalf.
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
@@ -289,6 +292,7 @@ For example, it would be great if the API supported direct uploading so that the
 - Add in-place (modal) spreadsheet design/editing features to the *volume*/*project* page interface.
 - Move *materials* out of the data spreadsheet in the interface and move to a new Materials section on the *volume*/*project* page.
 
+
 ### Optional/desirable enhancements for Databrary 2.0+
 
 - Adopt/specify/promote a consistent file/directory format (BIDS with JSON or json-schema) for Databrary projects that will allow projects stored locally to be automatically "ingested" into Databrary.
@@ -309,6 +313,7 @@ Example: <https://nyu.databrary.org/volume/1/slot/6256/->
 - Enable clickable "previews" of filetypes beyond audio and video, specifically, CSVs, PDFs, text files, annotation files (*.opf), etc.
 - Rearrange interface elements to reduce vertical scrolling.
 - Fix downloading of files in native (non-transcoded) formats. **Replicate**
+- If a single session has multiple tasks, enable the videos or related data to be loaded with the specific task.
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
@@ -334,6 +339,7 @@ The coding files have temporal onset/offset fields and follow the Datavyu or oth
 ## Requirements for Databrary 2.0
 
 - Expand the search/filter engine to include all fields contained in the spreadsheet.
+- Include an option for a pop up notice for things relating to upload issues or maintenence notes upon login to the site
 
 ### Optional/desirable enhancements for Databrary 2.0+
 
