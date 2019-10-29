@@ -1,0 +1,10 @@
+﻿from,to,weight
+1hr,collector,0.5
+quest,collector,0.5
+tour,collector,0.5
+decibel,collector,0.5
+survey,collector,0.5
+collector,databrary,0.5
+collector,kobo,0.5
+databrary,box,0.5
+kobo,box,0.5

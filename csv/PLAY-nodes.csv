@@ -1,0 +1,10 @@
+﻿id,type,label.color
+1hr,video,lightblue
+quest,video,lightblue
+tour,video,lightblue
+decibel,data,blue
+survey,data,blue
+collector,site,green
+kobo,server,gold
+databrary,server,gold
+box,server,gold

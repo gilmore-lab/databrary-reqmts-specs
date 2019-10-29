@@ -1,7 +1,7 @@
 ---
 title: "schema-planning"
 author: "Rick Gilmore"
-date: "2019-10-28 13:11:23"
+date: "2019-10-29 08:45:11"
 output:
   html_document:
     keep_md: true
@@ -22,6 +22,8 @@ This document contains some work related to planning for the Databrary 2.0 schem
 
 - Ognyanova, K. (2019) Network visualization with R. Retrieved from www.kateto.net/network-visualization. <http://kateto.net/network-visualization>
 - ggnet: <https://briatte.github.io/ggnet/>
+- DiagrammeR and GraphViz: <https://mikeyharper.uk/flowcharts-in-r-using-diagrammer/>
+- Iannone, R. 2018. DiagrammeR: Graph/Network Visualization. https://CRAN.R-project.org/package=DiagrammeR.
 
 ## Understanding the network data format
 
@@ -83,8 +85,8 @@ grViz("digraph {
 		}")
 ```
 
-<!--html_preserve--><div id="htmlwidget-370eb29d60a95c2e2244" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-370eb29d60a95c2e2244">{"x":{"diagram":"digraph {\n\t  style=filled\n\t\tcolor=lightgrey\n\t\tnode [style=filled, color=lightblue]\n    video_1 -> {person_1, datavyu_1}\n\t\tvideo_2 -> {person_2, datavyu_2}\n    video_3 -> {person_3, datavyu_3}\n    videos -> {video_1, video_2, video_3}\n    code_1 -> {datavyu_1, datavyu_2, datavyu_3}\n    code_2 -> {datavyu_1, datavyu_2, datavyu_3}\n    codes -> {code_1, code_2}\n    persons -> {person_1, person_2, person_3}\n\t\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-d446365f7417ce5bd952" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d446365f7417ce5bd952">{"x":{"diagram":"digraph {\n\t  style=filled\n\t\tcolor=lightgrey\n\t\tnode [style=filled, color=lightblue]\n    video_1 -> {person_1, datavyu_1}\n\t\tvideo_2 -> {person_2, datavyu_2}\n    video_3 -> {person_3, datavyu_3}\n    videos -> {video_1, video_2, video_3}\n    code_1 -> {datavyu_1, datavyu_2, datavyu_3}\n    code_2 -> {datavyu_1, datavyu_2, datavyu_3}\n    codes -> {code_1, code_2}\n    persons -> {person_1, person_2, person_3}\n\t\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 The `igraph` package seems to be more flexible, and it is still supported.
 So, let's try a version using it.
@@ -258,3 +260,112 @@ plot(g, vertex.size=30, vertex.color="white")
 Here, the actual assets might be the survey file, the video, and the EEG file.
 There is likely to be data associated with the participants and the wave, but that may not need to be stored as specific asset files.
 
+## PLAY organization, version 2
+
+On PLAY, there are data collection sites and data coding sites.
+Data collection sites gather at least 3 videos: 1 hour natural behavior, surveys, house tour.
+Data collection sites also generate a survey file (with subcomponents), and a decibel reading file.
+
+
+```r
+vertices_p <- readr::read_csv("csv/PLAY-nodes.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   id = col_character(),
+##   type = col_character(),
+##   label.color = col_character()
+## )
+```
+
+```r
+edges_p <- readr::read_csv("csv/PLAY-edges.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   from = col_character(),
+##   to = col_character(),
+##   weight = col_double()
+## )
+```
+
+```r
+g <- igraph::graph_from_data_frame(edges_p, vertices_p, 
+                                    directed = TRUE)
+
+set.seed(3)
+plot(g, vertex.size = 60, label.cex = .5, vertex.shape = "none")
+```
+
+![](schema-planning_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+
+## PLAY organization, version 3
+
+`igraph` is powerful, but requires lots of parameter customization.
+Let's try the same thing using `DiagrammeR`.
+
+
+```r
+DiagrammeR::grViz("digraph {
+
+graph [layout = dot, rankdir = LR]
+
+# define the global styles of the nodes. We can override these in box if we wish
+node [shape = rectangle, style = filled, fillcolor = Linen]
+
+data1 [label = '1 hr', shape = folder, fillcolor = Beige]
+data2 [label = 'Questionnaire video', shape = folder, fillcolor = Beige]
+data3 [label = 'Questionnaire file', shape = folder, fillcolor = Beige]
+data4 [label = 'House tour', shape = folder, fillcolor = Beige]
+data5 [label = 'dB measure', shape = folder, fillcolor = Beige]
+visit [label =  'Home visit']
+databrary [label = 'Databrary']
+kobotb    [label = 'KoBoToolbox']
+box [label = 'Box.com']
+PLAY [label= 'Play\nstaff']
+
+# edge definitions with the node IDs
+{data1 data2 data3 data4 data5}  -> visit -> {databrary, kobotb} -> box -> PLAY
+}")
+```
+
+<!--html_preserve--><div id="htmlwidget-bd85948702198033d73c" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bd85948702198033d73c">{"x":{"diagram":"digraph {\n\ngraph [layout = dot, rankdir = LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [shape = rectangle, style = filled, fillcolor = Linen]\n\ndata1 [label = \"1 hr\", shape = folder, fillcolor = Beige]\ndata2 [label = \"Questionnaire video\", shape = folder, fillcolor = Beige]\ndata3 [label = \"Questionnaire file\", shape = folder, fillcolor = Beige]\ndata4 [label = \"House tour\", shape = folder, fillcolor = Beige]\ndata5 [label = \"dB measure\", shape = folder, fillcolor = Beige]\nvisit [label =  \"Home visit\"]\ndatabrary [label = \"Databrary\"]\nkobotb    [label = \"KoBoToolbox\"]\nbox [label = \"Box.com\"]\nPLAY [label= \"Play\nstaff\"]\n\n# edge definitions with the node IDs\n{data1 data2 data3 data4 data5}  -> visit -> {databrary, kobotb} -> box -> PLAY\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+
+Or, another version, dropping the `Home visit` label.
+
+
+```r
+DiagrammeR::grViz("digraph {
+
+graph [layout = dot, rankdir = LR]
+
+# define the global styles of the nodes. We can override these in box if we wish
+node [shape = rectangle, style = filled, fillcolor = Linen]
+
+one_hr [label = '1 hr', shape = folder, fillcolor = Beige]
+tour [label = 'House\ntour', shape = folder, fillcolor = Beige]
+quest_vid [label = 'Questionnaire\nvideo', shape = folder, fillcolor = Beige]
+quest_dat [label = 'Questionnaire\nfile', shape = folder, fillcolor = Beige]
+db [label = 'db measure', shape = folder, fillcolor = Beige]
+tablet [label = 'Tablet']
+lab_pc [label = 'Lab PC']
+camera [label = 'camera']
+databrary [label = 'Databrary' fillcolor = White]
+kobotb    [label = 'KoBoToolbox' fillcolor = White]
+box [label = 'Box.com' fillcolor = White]
+PLAY [label= 'PLAY\nstaff']
+
+# edge definitions with the node IDs
+{one_hr quest_vid tour} -> camera -> databrary -> box -> PLAY
+quest_dat -> tablet -> kobotb -> box
+db -> tablet -> lab_pc -> kobotb
+}")
+```
+
+<!--html_preserve--><div id="htmlwidget-ac2825f47fc0bccb15cc" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac2825f47fc0bccb15cc">{"x":{"diagram":"digraph {\n\ngraph [layout = dot, rankdir = LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [shape = rectangle, style = filled, fillcolor = Linen]\n\none_hr [label = \"1 hr\", shape = folder, fillcolor = Beige]\ntour [label = \"House\ntour\", shape = folder, fillcolor = Beige]\nquest_vid [label = \"Questionnaire\nvideo\", shape = folder, fillcolor = Beige]\nquest_dat [label = \"Questionnaire\nfile\", shape = folder, fillcolor = Beige]\ndb [label = \"db measure\", shape = folder, fillcolor = Beige]\ntablet [label = \"Tablet\"]\nlab_pc [label = \"Lab PC\"]\ncamera [label = \"camera\"]\ndatabrary [label = \"Databrary\" fillcolor = White]\nkobotb    [label = \"KoBoToolbox\" fillcolor = White]\nbox [label = \"Box.com\" fillcolor = White]\nPLAY [label= \"PLAY\nstaff\"]\n\n# edge definitions with the node IDs\n{one_hr quest_vid tour} -> camera -> databrary -> box -> PLAY\nquest_dat -> tablet -> kobotb -> box\ndb -> tablet -> lab_pc -> kobotb\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->

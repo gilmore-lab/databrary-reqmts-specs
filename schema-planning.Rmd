@@ -35,6 +35,8 @@ This document contains some work related to planning for the Databrary 2.0 schem
 
 - Ognyanova, K. (2019) Network visualization with R. Retrieved from www.kateto.net/network-visualization. <http://kateto.net/network-visualization>
 - ggnet: <https://briatte.github.io/ggnet/>
+- DiagrammeR and GraphViz: <https://mikeyharper.uk/flowcharts-in-r-using-diagrammer/>
+- Iannone, R. 2018. DiagrammeR: Graph/Network Visualization. https://CRAN.R-project.org/package=DiagrammeR.
 
 ## Understanding the network data format
 
@@ -186,3 +188,79 @@ plot(g, vertex.size=30, vertex.color="white")
 
 Here, the actual assets might be the survey file, the video, and the EEG file.
 There is likely to be data associated with the participants and the wave, but that may not need to be stored as specific asset files.
+
+## PLAY organization, version 2
+
+On PLAY, there are data collection sites and data coding sites.
+Data collection sites gather at least 3 videos: 1 hour natural behavior, surveys, house tour.
+Data collection sites also generate a survey file (with subcomponents), and a decibel reading file.
+
+```{r}
+vertices_p <- readr::read_csv("csv/PLAY-nodes.csv")
+edges_p <- readr::read_csv("csv/PLAY-edges.csv")
+
+g <- igraph::graph_from_data_frame(edges_p, vertices_p, 
+                                    directed = TRUE)
+
+set.seed(3)
+plot(g, vertex.size = 60, label.cex = .5, vertex.shape = "none")
+```
+
+## PLAY organization, version 3
+
+`igraph` is powerful, but requires lots of parameter customization.
+Let's try the same thing using `DiagrammeR`.
+
+```{r}
+DiagrammeR::grViz("digraph {
+
+graph [layout = dot, rankdir = LR]
+
+# define the global styles of the nodes. We can override these in box if we wish
+node [shape = rectangle, style = filled, fillcolor = Linen]
+
+data1 [label = '1 hr', shape = folder, fillcolor = Beige]
+data2 [label = 'Questionnaire video', shape = folder, fillcolor = Beige]
+data3 [label = 'Questionnaire file', shape = folder, fillcolor = Beige]
+data4 [label = 'House tour', shape = folder, fillcolor = Beige]
+data5 [label = 'dB measure', shape = folder, fillcolor = Beige]
+visit [label =  'Home visit']
+databrary [label = 'Databrary']
+kobotb    [label = 'KoBoToolbox']
+box [label = 'Box.com']
+PLAY [label= 'Play\nstaff']
+
+# edge definitions with the node IDs
+{data1 data2 data3 data4 data5}  -> visit -> {databrary, kobotb} -> box -> PLAY
+}")
+```
+
+Or, another version, dropping the `Home visit` label.
+
+```{r}
+DiagrammeR::grViz("digraph {
+
+graph [layout = dot, rankdir = LR]
+
+# define the global styles of the nodes. We can override these in box if we wish
+node [shape = rectangle, style = filled, fillcolor = Linen]
+
+one_hr [label = '1 hr', shape = folder, fillcolor = Beige]
+tour [label = 'House\ntour', shape = folder, fillcolor = Beige]
+quest_vid [label = 'Questionnaire\nvideo', shape = folder, fillcolor = Beige]
+quest_dat [label = 'Questionnaire\nfile', shape = folder, fillcolor = Beige]
+db [label = 'db measure', shape = folder, fillcolor = Beige]
+tablet [label = 'Tablet']
+lab_pc [label = 'Lab PC']
+camera [label = 'camera']
+databrary [label = 'Databrary' fillcolor = White]
+kobotb    [label = 'KoBoToolbox' fillcolor = White]
+box [label = 'Box.com' fillcolor = White]
+PLAY [label= 'PLAY\nstaff']
+
+# edge definitions with the node IDs
+{one_hr quest_vid tour} -> camera -> databrary -> box -> PLAY
+quest_dat -> tablet -> kobotb -> box
+db -> tablet -> lab_pc -> kobotb
+}")
+```
