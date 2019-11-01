@@ -264,3 +264,41 @@ quest_dat -> tablet -> kobotb -> box
 db -> tablet -> lab_pc -> kobotb
 }")
 ```
+
+## Sketch of a more flexible and generic scheme for Databrary
+
+The primary entities are `people`, `measures`, and `projects`.
+Projects can have various types: papers, original data sets, combined/aggregated datasets, stimuli collections, or even groups of projects (like to summarize all work on a grant).
+Databrary's primary user-generated storage consists of files: video, audio, images, alphanumeric data, documents.
+Users have their own, sometimes idiosyncratic, schemes for organizing the files into projects.
+We want to offer a flexible, yet robust way to reflect user organizational schemes for intake, but offer consistent ways to display and search data once it's shared.
+
+```{r}
+DiagrammeR::grViz("digraph {
+
+graph [layout = dot, rankdir = LR]
+
+# define the global styles of the nodes. We can override these in box if we wish
+node [shape = rectangle, style = filled, fillcolor = Linen]
+
+measure1 [label = 'Video', shape = folder, fillcolor = Beige]
+measure2 [label = 'EEG', shape = folder, fillcolor = Beige]
+person   [label = ']
+quest_vid [label = 'Questionnaire\nvideo', shape = folder, fillcolor = Beige]
+quest_dat [label = 'Questionnaire\nfile', shape = folder, fillcolor = Beige]
+db [label = 'db measure', shape = folder, fillcolor = Beige]
+tablet [label = 'Tablet']
+lab_pc [label = 'Lab PC']
+camera [label = 'camera']
+databrary [label = 'Databrary' fillcolor = White]
+kobotb    [label = 'KoBoToolbox' fillcolor = White]
+box [label = 'Box.com' fillcolor = White]
+PLAY [label= 'PLAY\nstaff']
+
+# edge definitions with the node IDs
+{one_hr quest_vid tour} -> camera -> databrary -> box -> PLAY
+quest_dat -> tablet -> kobotb -> box
+db -> tablet -> lab_pc -> kobotb
+}")
+```
+
